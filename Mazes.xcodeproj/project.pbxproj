@@ -12,7 +12,8 @@
 		022F08541FA1EEBA0018BB2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022F08521FA1EEBA0018BB2C /* Main.storyboard */; };
 		022F08561FA1EEBA0018BB2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022F08551FA1EEBA0018BB2C /* Assets.xcassets */; };
 		022F08591FA1EEBA0018BB2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022F08571FA1EEBA0018BB2C /* LaunchScreen.storyboard */; };
-		022F08641FA1EEBB0018BB2C /* MazesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08631FA1EEBB0018BB2C /* MazesTests.swift */; };
+		022F08641FA1EEBB0018BB2C /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08631FA1EEBB0018BB2C /* CellTests.swift */; };
+		022F086F1FA1F1520018BB2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F086E1FA1F1520018BB2C /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +35,9 @@
 		022F08581FA1EEBA0018BB2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		022F085A1FA1EEBA0018BB2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		022F085F1FA1EEBB0018BB2C /* MazesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MazesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		022F08631FA1EEBB0018BB2C /* MazesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazesTests.swift; sourceTree = "<group>"; };
+		022F08631FA1EEBB0018BB2C /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
 		022F08651FA1EEBB0018BB2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		022F086E1FA1F1520018BB2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				022F08551FA1EEBA0018BB2C /* Assets.xcassets */,
 				022F08571FA1EEBA0018BB2C /* LaunchScreen.storyboard */,
 				022F085A1FA1EEBA0018BB2C /* Info.plist */,
+				022F086E1FA1F1520018BB2C /* Cell.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -90,7 +93,7 @@
 		022F08621FA1EEBB0018BB2C /* MazesTests */ = {
 			isa = PBXGroup;
 			children = (
-				022F08631FA1EEBB0018BB2C /* MazesTests.swift */,
+				022F08631FA1EEBB0018BB2C /* CellTests.swift */,
 				022F08651FA1EEBB0018BB2C /* Info.plist */,
 			);
 			path = MazesTests;
@@ -201,6 +204,7 @@
 			files = (
 				022F08511FA1EEBA0018BB2C /* ViewController.swift in Sources */,
 				022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */,
+				022F086F1FA1F1520018BB2C /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				022F08641FA1EEBB0018BB2C /* MazesTests.swift in Sources */,
+				022F08641FA1EEBB0018BB2C /* CellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

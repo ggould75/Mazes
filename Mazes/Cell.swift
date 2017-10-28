@@ -11,26 +11,30 @@ import UIKit
 class Cell: NSObject {
     public var row: NSInteger = 0
     public var column: NSInteger = 0
-    public var links: NSMutableSet
+    public var linkedCells: NSMutableSet
     
     public init(row: NSInteger, column: NSInteger) {
         self.row = row
         self.column = column
-        self.links = NSMutableSet()
+        self.linkedCells = NSMutableSet()
         super.init()
     }
     
     public func link(toCell: Cell, bidirectional: Bool! = true) {
-        self.links.add(toCell)
+        self.linkedCells.add(toCell)
         if (bidirectional) {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
     
     public func unlink(fromCell: Cell, bidirectional: Bool! = true) {
-        self.links.remove(fromCell);
+        self.linkedCells.remove(fromCell);
         if (bidirectional) {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
+    }
+    
+    public func isLinkedToCell(cell: Cell) -> Bool {
+        return self.linkedCells.contains(cell)
     }
 }

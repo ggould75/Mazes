@@ -12,7 +12,7 @@ import XCTest
 class CellTests: XCTestCase {
     func testInit() {
         let cell = Cell(row: 0, column: 0)
-        XCTAssert(cell.row == 0)
+        XCTAssertEqual(cell.row == 0)
         XCTAssert(cell.column == 0)
         XCTAssert(cell.linkedCells.isKind(of: NSMutableSet.self))
         XCTAssert(cell.linkedCells.count == 0)

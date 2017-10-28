@@ -14,7 +14,7 @@ class Cell: NSObject {
     public var linkedCells: NSMutableSet
     public var northCell, southCell, eastCell, westCell : Cell!
     
-    public init(row: NSInteger, column: NSInteger) {
+    public init(row: Int, column: Int) {
         self.row = row
         self.column = column
         self.linkedCells = NSMutableSet()

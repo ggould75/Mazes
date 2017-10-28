@@ -9,8 +9,8 @@
 import UIKit
 
 class Cell: NSObject {
-    public var row: NSInteger
-    public var column: NSInteger
+    public var row: Int
+    public var column: Int
     public var linkedCells: NSMutableSet
     public var northCell, southCell, eastCell, westCell : Cell!
     

@@ -9,9 +9,10 @@
 import UIKit
 
 class Cell: NSObject {
-    public var row: NSInteger = 0
-    public var column: NSInteger = 0
+    public var row: NSInteger
+    public var column: NSInteger
     public var linkedCells: NSMutableSet
+    public var northCell, southCell, eastCell, westCell : Cell!
     
     public init(row: NSInteger, column: NSInteger) {
         self.row = row
@@ -36,5 +37,25 @@ class Cell: NSObject {
     
     public func isLinkedToCell(cell: Cell) -> Bool {
         return self.linkedCells.contains(cell)
+    }
+    
+    public var neighborCells: NSSet {
+        get {
+            let cells = NSMutableSet()
+            if (self.northCell != nil) {
+                cells.add(self.northCell)
+            }
+            if (self.southCell != nil) {
+                cells.add(self.southCell)
+            }
+            if (self.eastCell != nil) {
+                cells.add(self.eastCell)
+            }
+            if (self.westCell != nil) {
+                cells.add(self.westCell)
+            }
+            
+            return cells.copy() as! NSSet
+        }
     }
 }

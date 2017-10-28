@@ -16,6 +16,8 @@ class CellTests: XCTestCase {
         XCTAssert(cell.column == 0)
         XCTAssert(cell.linkedCells.isKind(of: NSMutableSet.self))
         XCTAssert(cell.linkedCells.count == 0)
+        XCTAssert(cell.neighborCells.isKind(of: NSSet.self))
+        XCTAssert(cell.neighborCells.count == 0)
     }
     
     func testLinks() {
@@ -51,5 +53,32 @@ class CellTests: XCTestCase {
         XCTAssertFalse(cell.isLinkedToCell(cell: cell2))
     }
     
+    func testNeighbors() {
+        let cell = Cell(row: 2, column: 2)
+        
+        XCTAssert(cell.neighborCells.count == 0)
+        XCTAssertNil(cell.northCell)
+        XCTAssertNil(cell.southCell)
+        XCTAssertNil(cell.eastCell)
+        XCTAssertNil(cell.westCell)
+        
+        let northCell = Cell(row: 1, column: 2)
+        let southCell = Cell(row: 3, column: 2)
+        let eastCell = Cell(row: 2, column: 1)
+        let westCell = Cell(row: 2, column: 3)
+        cell.northCell = northCell
+        cell.southCell = southCell
+        cell.eastCell = eastCell
+        cell.westCell = westCell
+        XCTAssertEqual(cell.northCell, northCell)
+        XCTAssertEqual(cell.northCell, northCell)
+        XCTAssertEqual(cell.southCell, southCell)
+        XCTAssertEqual(cell.eastCell, eastCell)
+        XCTAssertEqual(cell.westCell, westCell)
+        XCTAssert(cell.neighborCells.count == 4)
+        XCTAssert(cell.neighborCells.contains(northCell))
+        XCTAssert(cell.neighborCells.contains(southCell))
+        XCTAssert(cell.neighborCells.contains(eastCell))
+        XCTAssert(cell.neighborCells.contains(westCell))
     }
 }

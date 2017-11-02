@@ -17,15 +17,36 @@ class Grid: NSObject {
         self.rows = rows
         self.columns = columns
         super.init()
-        setupCells()
+        setupCellsMatrix()
+        setupCellsNeighbors()
     }
     
-    private func setupCells() {
+    private func setupCellsMatrix() {
         for row in 0...rows - 1 {
-            self.cellsMatrix.append([Cell]())
+            cellsMatrix.append([Cell]())
             for column in 0...columns - 1 {
                 let cell = Cell(row: row, column: column)
-                self.cellsMatrix[row].append(cell)
+                cellsMatrix[row].append(cell)
+            }
+        }
+    }
+    
+    private func setupCellsNeighbors() {
+        for row in 0...rows - 1 {
+            for column in 0...columns - 1 {
+                let cell = cellsMatrix[row][column]
+                if row - 1 >= 0 {
+                    cell.northCell = cellsMatrix[row - 1][column]
+                }
+                if row + 1 < rows {
+                    cell.southCell = cellsMatrix[row + 1][column]
+                }
+                if column - 1 >= 0 {
+                    cell.westCell = cellsMatrix[row][column - 1]
+                }
+                if column + 1 < columns {
+                    cell.eastCell = cellsMatrix[row][column + 1]
+                }
             }
         }
     }

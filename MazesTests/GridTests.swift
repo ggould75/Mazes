@@ -56,4 +56,12 @@ class GridTests: XCTestCase {
         XCTAssertNil(cell0_9.eastCell)
         XCTAssertNotNil(cell0_9.westCell)
     }
+    
+    func testCellAt() {
+        let grid = Grid(rows: 5, columns: 10)
+        XCTAssertNil(grid.cellAt(row: 5, column: 10))
+        XCTAssertNil(grid.cellAt(row: -1, column: -1))
+        XCTAssertNotNil(grid.cellAt(row: 3, column: 3))
+        
+    }
 }

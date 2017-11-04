@@ -50,4 +50,14 @@ class Grid: NSObject {
             }
         }
     }
+    
+    public func cellAt(row: Int, column: Int) -> Cell! {
+        guard row >= 0 && row < self.rows ||
+              column >= 0 && column < self.columns else
+        {
+            return nil
+        }
+
+        return cellsMatrix[row][column];
+    }
 }

@@ -14,8 +14,8 @@ class GridTests: XCTestCase {
         let numberOfRows = 5
         let numberOfColumns = 10
         let grid = Grid(rows: numberOfRows, columns: numberOfColumns)
-        XCTAssert(grid.rows == 5)
-        XCTAssert(grid.columns == 10)
+        XCTAssert(grid.rows == numberOfRows)
+        XCTAssert(grid.columns == numberOfColumns)
         
         for row in 0...numberOfRows - 1 {
             for column in 0...numberOfColumns - 1 {
@@ -55,6 +55,8 @@ class GridTests: XCTestCase {
         XCTAssertNotNil(cell0_9.southCell)
         XCTAssertNil(cell0_9.eastCell)
         XCTAssertNotNil(cell0_9.westCell)
+        
+        grid.binaryTreeGenerator()
     }
     
     func testCellAt() {
@@ -67,7 +69,10 @@ class GridTests: XCTestCase {
     
     func testRandomCell() {
         let grid = Grid(rows: 5, columns: 10)
-        let cell = grid.randomCell()
-        XCTAssert(cell.isKind(of: Cell.self))
+        let randomCell1 = grid.randomCell()
+        let randomCell2 = grid.randomCell()
+        XCTAssert(randomCell1.isKind(of: Cell.self))
+        XCTAssert(randomCell2.isKind(of: Cell.self))
+        XCTAssert(randomCell1 != randomCell2)
     }
 }

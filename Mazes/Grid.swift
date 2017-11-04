@@ -64,4 +64,30 @@ class Grid: NSObject {
     public func randomCell() -> Cell {
         return cellAt(row: Int(arc4random_uniform(UInt32(rows - 1))), column: Int(arc4random_uniform(UInt32(columns - 1))))
     }
+    
+    public func binaryTreeGenerator() {
+        for rowArray in cellsMatrix {
+            for cell in rowArray {
+                print("row: \(cell.row), column: \(cell.column)")
+                var neighbors = [Cell]()
+                if cell.northCell != nil {
+                    neighbors.append(cell.northCell)
+                }
+                if cell.eastCell != nil {
+                    neighbors.append(cell.eastCell)
+                }
+                
+                if neighbors.count == 0 {
+                    continue
+                }
+                var randomNeighborIndex = 0
+                if neighbors.count == 2 {
+                    randomNeighborIndex = Int(arc4random_uniform(UInt32(neighbors.count - 1)))
+                }
+                
+                let randomNeighbor = neighbors[randomNeighborIndex] as Cell
+                cell.link(toCell: randomNeighbor)
+            }
+        }
+    }
 }

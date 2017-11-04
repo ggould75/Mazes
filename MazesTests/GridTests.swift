@@ -61,7 +61,13 @@ class GridTests: XCTestCase {
         let grid = Grid(rows: 5, columns: 10)
         XCTAssertNil(grid.cellAt(row: 5, column: 10))
         XCTAssertNil(grid.cellAt(row: -1, column: -1))
-        XCTAssertNotNil(grid.cellAt(row: 3, column: 3))
-        
+        let cell = grid.cellAt(row: 3, column: 3)
+        XCTAssert((cell?.isKind(of: Cell.self))!)
+    }
+    
+    func testRandomCell() {
+        let grid = Grid(rows: 5, columns: 10)
+        let cell = grid.randomCell()
+        XCTAssert(cell.isKind(of: Cell.self))
     }
 }

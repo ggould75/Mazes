@@ -52,12 +52,16 @@ class Grid: NSObject {
     }
     
     public func cellAt(row: Int, column: Int) -> Cell! {
-        guard row >= 0 && row < self.rows ||
-              column >= 0 && column < self.columns else
+        guard row >= 0 && row < rows ||
+              column >= 0 && column < columns else
         {
             return nil
         }
 
         return cellsMatrix[row][column];
+    }
+    
+    public func randomCell() -> Cell {
+        return cellAt(row: Int(arc4random_uniform(UInt32(rows - 1))), column: Int(arc4random_uniform(UInt32(columns - 1))))
     }
 }

@@ -63,6 +63,8 @@ class GridTests: XCTestCase {
         let grid = Grid(rows: 5, columns: 10)
         XCTAssertNil(grid.cellAt(row: 5, column: 10))
         XCTAssertNil(grid.cellAt(row: -1, column: -1))
+        XCTAssertNil(grid.cellAt(row: -1, column: 8))
+        XCTAssertNil(grid.cellAt(row: 2, column: -1))
         let cell = grid.cellAt(row: 3, column: 3)
         XCTAssert((cell?.isKind(of: Cell.self))!)
     }

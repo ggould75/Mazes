@@ -52,7 +52,7 @@ class Grid: NSObject {
     }
     
     public func cellAt(row: Int, column: Int) -> Cell! {
-        guard row >= 0 && row < rows ||
+        guard row >= 0 && row < rows &&
               column >= 0 && column < columns else
         {
             return nil

@@ -34,19 +34,11 @@ class Grid: NSObject {
     private func setupCellsNeighbors() {
         for row in 0...rows - 1 {
             for column in 0...columns - 1 {
-                let cell = cellsMatrix[row][column]
-                if row - 1 >= 0 {
-                    cell.northCell = cellsMatrix[row - 1][column]
-                }
-                if row + 1 < rows {
-                    cell.southCell = cellsMatrix[row + 1][column]
-                }
-                if column - 1 >= 0 {
-                    cell.westCell = cellsMatrix[row][column - 1]
-                }
-                if column + 1 < columns {
-                    cell.eastCell = cellsMatrix[row][column + 1]
-                }
+                let cell = cellAt(row: row, column: column)
+                cell?.northCell = cellAt(row: row - 1, column: column)
+                cell?.southCell = cellAt(row: row + 1, column: column)
+                cell?.westCell = cellAt(row: row, column: column - 1)
+                cell?.eastCell = cellAt(row: row, column: column + 1)
             }
         }
     }

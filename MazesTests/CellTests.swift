@@ -81,4 +81,43 @@ class CellTests: XCTestCase {
         XCTAssert(cell.neighborCells.contains(eastCell))
         XCTAssert(cell.neighborCells.contains(westCell))
     }
+    
+    func testNeighborCellsAreSetCorrectly() {
+        let grid = Grid(rows: 5, columns: 10)
+        
+        // neighbors of middle cell
+        let cell2_2 = grid.cellAt(row: 2, column: 2)
+        XCTAssertEqual(cell2_2?.northCell, grid.cellAt(row: 1, column: 2))
+        XCTAssertEqual(cell2_2?.southCell, grid.cellAt(row: 3, column: 2))
+        XCTAssertEqual(cell2_2?.westCell, grid.cellAt(row: 2, column: 1))
+        XCTAssertEqual(cell2_2?.eastCell, grid.cellAt(row: 2, column: 3))
+        
+        // top-left cell
+        let cell0_0 = grid.cellAt(row: 0, column: 0)
+        XCTAssertNil(cell0_0?.northCell)
+        XCTAssertEqual(cell0_0?.southCell, grid.cellAt(row: 1, column: 0))
+        XCTAssertNil(cell0_0?.westCell)
+        XCTAssertEqual(cell0_0?.eastCell, grid.cellAt(row: 0, column: 1))
+        
+        // top-right cell
+        let cell0_9 = grid.cellAt(row: 0, column: 9)
+        XCTAssertNil(cell0_9?.northCell)
+        XCTAssertEqual(cell0_9?.southCell, grid.cellAt(row: 1, column: 9))
+        XCTAssertEqual(cell0_9?.westCell, grid.cellAt(row: 0, column: 8))
+        XCTAssertNil(cell0_9?.eastCell)
+        
+        // bottom-right cell
+        let cell4_9 = grid.cellAt(row: 4, column: 9)
+        XCTAssertEqual(cell4_9?.northCell, grid.cellAt(row: 3, column: 9))
+        XCTAssertNil(cell4_9?.southCell)
+        XCTAssertEqual(cell4_9?.westCell, grid.cellAt(row: 4, column: 8))
+        XCTAssertNil(cell4_9?.eastCell)
+        
+        // bottom-left cell
+        let cell4_0 = grid.cellAt(row: 4, column: 0)
+        XCTAssertEqual(cell4_0?.northCell, grid.cellAt(row: 3, column: 0))
+        XCTAssertNil(cell4_0?.southCell)
+        XCTAssertNil(cell4_0?.westCell)
+        XCTAssertEqual(cell4_0?.eastCell, grid.cellAt(row: 4, column: 1))
+    }
 }

@@ -56,6 +56,7 @@ class GridTests: XCTestCase {
         XCTAssertNil(cell0_9.eastCell)
         XCTAssertNotNil(cell0_9.westCell)
         
+        // FIXME: how to test the result of an algorithm?
         grid.binaryTreeGenerator()
     }
     

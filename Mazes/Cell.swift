@@ -22,37 +22,37 @@ class Cell: NSObject {
     }
     
     public func link(toCell: Cell, bidirectional: Bool! = true) {
-        self.linkedCells.add(toCell)
+        linkedCells.add(toCell)
         if (bidirectional) {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
     
     public func unlink(fromCell: Cell, bidirectional: Bool! = true) {
-        self.linkedCells.remove(fromCell);
+        linkedCells.remove(fromCell);
         if (bidirectional) {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
     }
     
     public func isLinkedToCell(cell: Cell) -> Bool {
-        return self.linkedCells.contains(cell)
+        return linkedCells.contains(cell)
     }
     
     public var neighborCells: NSSet {
         get {
             let cells = NSMutableSet()
-            if (self.northCell != nil) {
-                cells.add(self.northCell)
+            if (northCell != nil) {
+                cells.add(northCell)
             }
             if (self.southCell != nil) {
-                cells.add(self.southCell)
+                cells.add(southCell)
             }
             if (self.eastCell != nil) {
-                cells.add(self.eastCell)
+                cells.add(eastCell)
             }
             if (self.westCell != nil) {
-                cells.add(self.westCell)
+                cells.add(westCell)
             }
             
             return cells.copy() as! NSSet

@@ -1,4 +1,4 @@
-# Mazes
+# Mazes [WIP]
 
 I'm just having fun with Swift, TDD to generate and solve Mazes.
 

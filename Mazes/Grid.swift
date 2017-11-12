@@ -54,7 +54,7 @@ class Grid: NSObject {
     }
     
     public func randomCell() -> Cell {
-        return cellAt(row: Int(arc4random_uniform(UInt32(rows - 1))), column: Int(arc4random_uniform(UInt32(columns - 1))))
+        return cellAt(row: Int(arc4random_uniform(UInt32(rows))), column: Int(arc4random_uniform(UInt32(columns))))
     }
     
     public func binaryTreeGenerator() {
@@ -74,7 +74,7 @@ class Grid: NSObject {
                 }
                 var randomNeighborIndex = 0
                 if neighbors.count == 2 {
-                    randomNeighborIndex = Int(arc4random_uniform(UInt32(neighbors.count - 1)))
+                    randomNeighborIndex = Int(arc4random_uniform(UInt32(neighbors.count)))
                 }
                 
                 let randomNeighbor = neighbors[randomNeighborIndex] as Cell

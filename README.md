@@ -3,6 +3,7 @@
 I'm just having fun with Swift, TDD to generate and solve Mazes.
 
 A 5x5 maze generated with binary tree algorithm
+```
 +---+---+---+---+---+
 |                   |
 +---+   +   +---+   +
@@ -14,8 +15,10 @@ A 5x5 maze generated with binary tree algorithm
 +   +   +   +---+   +
 |   |   |   |       |
 +---+---+---+---+---+
+```
 
 8x15
+```
 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 |                                                           |
 +---+   +   +---+   +   +---+   +   +---+   +---+   +---+   +
@@ -33,4 +36,4 @@ A 5x5 maze generated with binary tree algorithm
 +   +   +   +---+---+---+   +   +   +---+   +---+   +   +   +
 |   |   |   |               |   |   |       |       |   |   |
 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-
+```

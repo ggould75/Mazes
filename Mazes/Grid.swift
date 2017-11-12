@@ -81,4 +81,46 @@ class Grid: NSObject {
             }
         }
     }
+    
+    public func asAscii() -> String {
+        var output = ""
+        var topWallOutput = ""
+        var bottomWallOutput = ""
+        var bodyWallOutput = ""
+        var rowIndex = 0
+        var columnIndex = 0
+        for rowArray in cellsMatrix {
+            columnIndex = 0
+            for cell in rowArray {
+                topWallOutput += cell.topWallAsAscii()
+                bodyWallOutput += cell.bodyAsAscii()
+                
+                let isLastRow = rowIndex == cellsMatrix.count - 1
+                if (isLastRow) {
+                    bottomWallOutput += cell.bottomWallAsAscii()
+                }
+                
+                let isLastColumn = columnIndex == rowArray.count - 1
+                if (isLastColumn) {
+                    topWallOutput += "+"
+                    bodyWallOutput += "|"
+                }
+                
+                columnIndex = columnIndex + 1
+            }
+            
+            output += topWallOutput + "\n" + bodyWallOutput + "\n"
+            topWallOutput = ""
+            bodyWallOutput = ""
+            rowIndex = rowIndex + 1
+        }
+        
+        output += bottomWallOutput + "+"
+        
+        return output
+    }
+    
+    override var description : String {
+        return asAscii()
+    }
 }

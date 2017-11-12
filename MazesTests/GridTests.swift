@@ -70,6 +70,7 @@ class GridTests: XCTestCase {
         XCTAssert((cell?.isKind(of: Cell.self))!)
     }
     
+    // FIXME: can fail if random generation creates equal row/column
     func testRandomCell() {
         let grid = Grid(rows: 5, columns: 10)
         let randomCell1 = grid.randomCell()
@@ -77,5 +78,12 @@ class GridTests: XCTestCase {
         XCTAssert(randomCell1.isKind(of: Cell.self))
         XCTAssert(randomCell2.isKind(of: Cell.self))
         XCTAssert(randomCell1 != randomCell2)
+    }
+    
+    func testAsAscii() {
+        let mazeSize = 10
+        let grid = Grid(rows: mazeSize, columns: mazeSize)
+        grid.binaryTreeGenerator()
+        print(grid.asAscii())
     }
 }

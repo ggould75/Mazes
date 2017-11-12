@@ -120,4 +120,49 @@ class CellTests: XCTestCase {
         XCTAssertNil(cell4_0?.westCell)
         XCTAssertEqual(cell4_0?.eastCell, grid.cellAt(row: 4, column: 1))
     }
+    
+    func testTopWallAsAscii() {
+        // No north cell
+        let cell0_0 = Cell(row: 0, column: 0)
+        XCTAssertEqual(cell0_0.topWallAsAscii(), "+---")
+        
+        // North cell but not linked
+        let cell1_0 = Cell(row: 1, column: 0)
+        cell1_0.northCell = cell0_0
+        XCTAssertEqual(cell1_0.topWallAsAscii(), "+---")
+        
+        // North cell linked
+        cell1_0.link(toCell: cell0_0)
+        XCTAssertEqual(cell1_0.topWallAsAscii(), "+   ")
+    }
+    
+    func testBodyAsAscii() {
+        // No west cell
+        let cell0_0 = Cell(row: 0, column: 0)
+        XCTAssertEqual(cell0_0.bodyAsAscii(), "|   ")
+        
+        // West cell but not linked
+        let cell0_1 = Cell(row: 0, column: 1)
+        cell0_1.westCell = cell0_0
+        XCTAssertEqual(cell0_1.bodyAsAscii(), "|   ")
+        
+        // West cell linked
+        cell0_1.link(toCell: cell0_0)
+        XCTAssertEqual(cell0_1.bodyAsAscii(), "    ")
+    }
+    
+    func testBottomWallAsAscii() {
+        // No south cell
+        let cell1_0 = Cell(row: 1, column: 0)
+        XCTAssertEqual(cell1_0.bottomWallAsAscii(), "+---")
+        
+        // South cell but not linked
+        let cell0_0 = Cell(row: 0, column: 0)
+        cell0_0.southCell = cell1_0
+        XCTAssertEqual(cell0_0.bottomWallAsAscii(), "+---")
+        
+        // South cell linked
+        cell0_0.link(toCell: cell1_0)
+        XCTAssertEqual(cell0_0.bottomWallAsAscii(), "+   ")
+    }
 }

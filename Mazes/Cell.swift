@@ -39,6 +39,39 @@ class Cell: NSObject {
         return linkedCells.contains(cell)
     }
     
+    public func topWallAsAscii() -> String {
+        if (northCell == nil || !isLinkedToCell(cell: northCell)) {
+            return "+---"
+        }
+        else if (isLinkedToCell(cell: northCell)) {
+            return "+   "
+        }
+        
+        return ""
+    }
+    
+    public func bodyAsAscii() -> String {
+        if (westCell == nil || !isLinkedToCell(cell: westCell)) {
+            return "|   "
+        }
+        else if (isLinkedToCell(cell: westCell)) {
+            return "    "
+        }
+        
+        return ""
+    }
+    
+    public func bottomWallAsAscii() -> String {
+        if (southCell == nil || !isLinkedToCell(cell: southCell)) {
+            return "+---"
+        }
+        else if (isLinkedToCell(cell: southCell)) {
+            return "+   "
+        }
+        
+        return ""
+    }
+    
     public var neighborCells: NSSet {
         get {
             let cells = NSMutableSet()

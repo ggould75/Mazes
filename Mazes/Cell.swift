@@ -58,4 +58,8 @@ class Cell: NSObject {
             return cells.copy() as! NSSet
         }
     }
+    
+    override var description : String {
+        return "row: \(row), column: \(column)"
+    }
 }

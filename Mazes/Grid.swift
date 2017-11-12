@@ -60,7 +60,6 @@ class Grid: NSObject {
     public func binaryTreeGenerator() {
         for rowArray in cellsMatrix {
             for cell in rowArray {
-                print("row: \(cell.row), column: \(cell.column)")
                 var neighbors = [Cell]()
                 if cell.northCell != nil {
                     neighbors.append(cell.northCell)

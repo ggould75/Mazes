@@ -82,6 +82,33 @@ class Grid: NSObject {
         }
     }
     
+    public func sidewinderGenerator() {
+        for rowArray in cellsMatrix {
+            var run = [Cell]()
+            for cell in rowArray {
+                run.append(cell)
+                
+                let isAtEastBoundary = (cell.eastCell == nil)
+                let isAtNorthBoundary = (cell.northCell == nil)
+                let randomDirection = Int(arc4random_uniform(UInt32(2)))
+                let shouldCloseOutRun = isAtEastBoundary || (!isAtNorthBoundary && randomDirection == 0)
+                
+                if shouldCloseOutRun {
+                    let randomRunMemberIndex = Int(arc4random_uniform(UInt32(run.count)))
+                    let runMemberCell = run[randomRunMemberIndex]
+                    if (runMemberCell.northCell != nil) {
+                        runMemberCell.link(toCell: runMemberCell.northCell)
+                    }
+                    
+                    run.removeAll()
+                }
+                else {
+                    cell.link(toCell: cell.eastCell)
+                }
+            }
+        }
+    }
+    
     public func asAscii() -> String {
         var output = ""
         var topWallOutput = ""

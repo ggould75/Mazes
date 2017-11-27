@@ -55,9 +55,6 @@ class GridTests: XCTestCase {
         XCTAssertNotNil(cell0_9.southCell)
         XCTAssertNil(cell0_9.eastCell)
         XCTAssertNotNil(cell0_9.westCell)
-        
-        // FIXME: how to test the result of an algorithm?
-        grid.binaryTreeGenerator()
     }
     
     func testCellAt() {
@@ -80,10 +77,17 @@ class GridTests: XCTestCase {
         XCTAssert(randomCell1 != randomCell2)
     }
     
-    func testAsAscii() {
+    // FIXME: how to test the result of an algorithm?
+    func testMazeRandomGenerators() {
         let mazeSize = 10
-        let grid = Grid(rows: mazeSize, columns: mazeSize)
+        var grid = Grid(rows: mazeSize, columns: mazeSize)
         grid.binaryTreeGenerator()
-        print(grid.asAscii())
+        var asciiGrid = grid.asAscii()
+        print("Binary tree generated maze:\n\(asciiGrid)\n\n")
+        
+        grid = Grid(rows: mazeSize, columns: mazeSize)
+        grid.sidewinderGenerator()
+        asciiGrid = grid.asAscii()
+        print("Sidewinder generated maze:\n\(asciiGrid)")
     }
 }

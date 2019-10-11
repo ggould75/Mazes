@@ -8,38 +8,37 @@
 
 import UIKit
 
-class Cell: NSObject {
+class Cell : NSObject {
     public var row: Int
     public var column: Int
     public var linkedCells: NSMutableSet
     public var northCell, southCell, eastCell, westCell : Cell!
     
-    public init(row: Int, column: Int) {
+    init(row: Int, column: Int) {
         self.row = row
         self.column = column
         self.linkedCells = NSMutableSet()
-        super.init()
     }
     
-    public func link(toCell: Cell, bidirectional: Bool! = true) {
+    func link(toCell: Cell, bidirectional: Bool! = true) {
         linkedCells.add(toCell)
         if (bidirectional) {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
     
-    public func unlink(fromCell: Cell, bidirectional: Bool! = true) {
+    func unlink(fromCell: Cell, bidirectional: Bool! = true) {
         linkedCells.remove(fromCell);
         if (bidirectional) {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
     }
     
-    public func isLinkedToCell(cell: Cell) -> Bool {
+    func isLinkedToCell(cell: Cell) -> Bool {
         return linkedCells.contains(cell)
     }
     
-    public func topWallAsAscii() -> String {
+    func topWallAsAscii() -> String {
         if (northCell == nil || !isLinkedToCell(cell: northCell)) {
             return "+---"
         }
@@ -50,7 +49,7 @@ class Cell: NSObject {
         return ""
     }
     
-    public func bodyAsAscii() -> String {
+    func bodyAsAscii() -> String {
         if (westCell == nil || !isLinkedToCell(cell: westCell)) {
             return "|   "
         }
@@ -61,7 +60,7 @@ class Cell: NSObject {
         return ""
     }
     
-    public func bottomWallAsAscii() -> String {
+    func bottomWallAsAscii() -> String {
         if (southCell == nil || !isLinkedToCell(cell: southCell)) {
             return "+---"
         }
@@ -72,7 +71,7 @@ class Cell: NSObject {
         return ""
     }
     
-    public var neighborCells: NSSet {
+    var neighborCells: NSSet {
         get {
             let cells = NSMutableSet()
             if (northCell != nil) {

@@ -8,57 +8,53 @@
 
 import UIKit
 
-class Grid: NSObject {
-    public var rows: Int
-    public var columns: Int
-    public var cellsMatrix: Array<Array<Cell>> = []
-    
-    public init(rows: Int, columns: Int) {
-        self.rows = rows
-        self.columns = columns
-        super.init()
-        setupCellsMatrix()
+struct Grid {
+    let numberOfRows: Int
+    let numberOfColumns: Int
+    var cells: [[Cell]] = []
+
+    init(rows: Int, columns: Int) {
+        self.numberOfRows = rows
+        self.numberOfColumns = columns
+        setupCells()
         setupCellsNeighbors()
     }
     
-    private func setupCellsMatrix() {
-        for row in 0...rows - 1 {
-            cellsMatrix.append([Cell]())
-            for column in 0...columns - 1 {
-                let cell = Cell(row: row, column: column)
-                cellsMatrix[row].append(cell)
-            }
+    private mutating func setupCells() {
+        for row in 0...numberOfRows - 1 {
+            let columns = (0...numberOfColumns - 1).map { Cell(row: row, column: $0) }
+            cells.append(columns)
         }
     }
     
     private func setupCellsNeighbors() {
-        for row in 0...rows - 1 {
-            for column in 0...columns - 1 {
-                let cell = cellAt(row: row, column: column)
-                cell?.northCell = cellAt(row: row - 1, column: column)
-                cell?.southCell = cellAt(row: row + 1, column: column)
-                cell?.westCell = cellAt(row: row, column: column - 1)
-                cell?.eastCell = cellAt(row: row, column: column + 1)
+        for (rowIdx, rowCells) in cells.enumerated() {
+            for (columnIdx, cell) in rowCells.enumerated() {
+                cell.northCell = cellAt(row: rowIdx - 1, column: columnIdx)
+                cell.southCell = cellAt(row: rowIdx + 1, column: columnIdx)
+                cell.westCell = cellAt(row: rowIdx, column: columnIdx - 1)
+                cell.eastCell = cellAt(row: rowIdx, column: columnIdx + 1)
             }
         }
     }
     
-    public func cellAt(row: Int, column: Int) -> Cell! {
-        guard row >= 0 && row < rows &&
-              column >= 0 && column < columns else
-        {
+    func cellAt(row: Int, column: Int) -> Cell? {
+        guard 0..<numberOfRows ~= row,
+              0..<numberOfColumns ~= column else {
+
             return nil
         }
 
-        return cellsMatrix[row][column];
+        return cells[row][column];
     }
     
-    public func randomCell() -> Cell {
-        return cellAt(row: Int(arc4random_uniform(UInt32(rows))), column: Int(arc4random_uniform(UInt32(columns))))
+    func randomCell() -> Cell? {
+        return cellAt(row: numberOfRows.randomize(),
+                      column: numberOfColumns.randomize())
     }
     
-    public func binaryTreeGenerator() {
-        for rowArray in cellsMatrix {
+    func binaryTreeGenerator() {
+        for rowArray in cells {
             for cell in rowArray {
                 var neighbors = [Cell]()
                 if cell.northCell != nil {
@@ -82,8 +78,8 @@ class Grid: NSObject {
         }
     }
     
-    public func sidewinderGenerator() {
-        for rowArray in cellsMatrix {
+    func sidewinderGenerator() {
+        for rowArray in cells {
             var run = [Cell]()
             for cell in rowArray {
                 run.append(cell)
@@ -109,20 +105,20 @@ class Grid: NSObject {
         }
     }
     
-    public func asAscii() -> String {
+    func asAscii() -> String {
         var output = ""
         var topWallOutput = ""
         var bottomWallOutput = ""
         var bodyWallOutput = ""
         var rowIndex = 0
         var columnIndex = 0
-        for rowArray in cellsMatrix {
+        for rowArray in cells {
             columnIndex = 0
             for cell in rowArray {
                 topWallOutput += cell.topWallAsAscii()
                 bodyWallOutput += cell.bodyAsAscii()
                 
-                let isLastRow = rowIndex == cellsMatrix.count - 1
+                let isLastRow = rowIndex == cells.count - 1
                 if (isLastRow) {
                     bottomWallOutput += cell.bottomWallAsAscii()
                 }
@@ -147,7 +143,13 @@ class Grid: NSObject {
         return output
     }
     
-    override var description : String {
+    var description : String {
         return asAscii()
+    }
+}
+
+extension Int {
+    func randomize() -> Int {
+        return Int(arc4random_uniform(UInt32(self)))
     }
 }

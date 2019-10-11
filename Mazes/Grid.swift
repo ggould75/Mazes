@@ -52,59 +52,69 @@ struct Grid {
         return cellAt(row: numberOfRows.randomize(),
                       column: numberOfColumns.randomize())
     }
-    
-    func binaryTreeGenerator() {
-        for rowArray in cells {
-            for cell in rowArray {
+
+    var description : String {
+        return asAscii()
+    }
+}
+
+extension Grid {
+    func buildBinaryTreeMaze() {
+        for rowCells in cells {
+            for cell in rowCells {
                 var neighbors = [Cell]()
-                if cell.northCell != nil {
-                    neighbors.append(cell.northCell)
+                if let northCell = cell.northCell {
+                    neighbors.append(northCell)
                 }
-                if cell.eastCell != nil {
-                    neighbors.append(cell.eastCell)
+                if let eastCell = cell.eastCell {
+                    neighbors.append(eastCell)
                 }
-                
+
                 if neighbors.count == 0 {
                     continue
                 }
+
                 var randomNeighborIndex = 0
                 if neighbors.count == 2 {
-                    randomNeighborIndex = Int(arc4random_uniform(UInt32(neighbors.count)))
+                    randomNeighborIndex = neighbors.count.randomize()
                 }
-                
-                let randomNeighbor = neighbors[randomNeighborIndex] as Cell
+
+                let randomNeighbor = neighbors[randomNeighborIndex]
                 cell.link(toCell: randomNeighbor)
             }
         }
     }
-    
-    func sidewinderGenerator() {
-        for rowArray in cells {
+
+    func buildSidewinderMaze() {
+        for rowCells in cells {
             var run = [Cell]()
-            for cell in rowArray {
+            for cell in rowCells {
                 run.append(cell)
-                
-                let isAtEastBoundary = (cell.eastCell == nil)
-                let isAtNorthBoundary = (cell.northCell == nil)
-                let randomDirection = Int(arc4random_uniform(UInt32(2)))
-                let shouldCloseOutRun = isAtEastBoundary || (!isAtNorthBoundary && randomDirection == 0)
-                
+
+                let isAtEastBoundary = cell.eastCell == nil
+                let isAtNorthBoundary = cell.northCell == nil
+                let randomDirection = 2.randomize()
+                let shouldCloseOutRun =
+                    isAtEastBoundary || (!isAtNorthBoundary && randomDirection == 0)
+
                 if shouldCloseOutRun {
-                    let randomRunMemberIndex = Int(arc4random_uniform(UInt32(run.count)))
+                    let randomRunMemberIndex = run.count.randomize()
                     let runMemberCell = run[randomRunMemberIndex]
-                    if (runMemberCell.northCell != nil) {
-                        runMemberCell.link(toCell: runMemberCell.northCell)
+                    if let runMemberNorthCell = runMemberCell.northCell {
+                        runMemberCell.link(toCell: runMemberNorthCell)
                     }
-                    
+
                     run.removeAll()
                 }
-                else {
-                    cell.link(toCell: cell.eastCell)
+                else if let eastCell = cell.eastCell {
+                    cell.link(toCell: eastCell)
                 }
             }
         }
     }
-    
+}
+
+extension Grid {
     func asAscii() -> String {
         var output = ""
         var topWallOutput = ""
@@ -112,39 +122,36 @@ struct Grid {
         var bodyWallOutput = ""
         var rowIndex = 0
         var columnIndex = 0
-        for rowArray in cells {
+
+        for rowCells in cells {
             columnIndex = 0
-            for cell in rowArray {
+            for cell in rowCells {
                 topWallOutput += cell.topWallAsAscii()
                 bodyWallOutput += cell.bodyAsAscii()
-                
+
                 let isLastRow = rowIndex == cells.count - 1
                 if (isLastRow) {
                     bottomWallOutput += cell.bottomWallAsAscii()
                 }
-                
-                let isLastColumn = columnIndex == rowArray.count - 1
+
+                let isLastColumn = columnIndex == rowCells.count - 1
                 if (isLastColumn) {
                     topWallOutput += "+"
                     bodyWallOutput += "|"
                 }
-                
+
                 columnIndex = columnIndex + 1
             }
-            
+
             output += topWallOutput + "\n" + bodyWallOutput + "\n"
             topWallOutput = ""
             bodyWallOutput = ""
             rowIndex = rowIndex + 1
         }
-        
+
         output += bottomWallOutput + "+"
-        
+
         return output
-    }
-    
-    var description : String {
-        return asAscii()
     }
 }
 

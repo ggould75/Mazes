@@ -9,10 +9,10 @@
 import UIKit
 
 class Cell : NSObject {
-    public var row: Int
-    public var column: Int
-    public var linkedCells: NSMutableSet
-    public var northCell, southCell, eastCell, westCell : Cell!
+    var row: Int
+    var column: Int
+    var linkedCells: NSMutableSet
+    var northCell, southCell, eastCell, westCell : Cell?
     
     init(row: Int, column: Int) {
         self.row = row
@@ -22,68 +22,38 @@ class Cell : NSObject {
     
     func link(toCell: Cell, bidirectional: Bool! = true) {
         linkedCells.add(toCell)
-        if (bidirectional) {
+        if bidirectional {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
     
     func unlink(fromCell: Cell, bidirectional: Bool! = true) {
         linkedCells.remove(fromCell);
-        if (bidirectional) {
+        if bidirectional {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
     }
     
-    func isLinkedToCell(cell: Cell) -> Bool {
+    func isLinkedTo(cell: Cell?) -> Bool {
+        guard let cell = cell else {
+            return false
+        }
         return linkedCells.contains(cell)
     }
-    
-    func topWallAsAscii() -> String {
-        if (northCell == nil || !isLinkedToCell(cell: northCell)) {
-            return "+---"
-        }
-        else if (isLinkedToCell(cell: northCell)) {
-            return "+   "
-        }
-        
-        return ""
-    }
-    
-    func bodyAsAscii() -> String {
-        if (westCell == nil || !isLinkedToCell(cell: westCell)) {
-            return "|   "
-        }
-        else if (isLinkedToCell(cell: westCell)) {
-            return "    "
-        }
-        
-        return ""
-    }
-    
-    func bottomWallAsAscii() -> String {
-        if (southCell == nil || !isLinkedToCell(cell: southCell)) {
-            return "+---"
-        }
-        else if (isLinkedToCell(cell: southCell)) {
-            return "+   "
-        }
-        
-        return ""
-    }
-    
+
     var neighborCells: NSSet {
         get {
             let cells = NSMutableSet()
-            if (northCell != nil) {
+            if let northCell = northCell {
                 cells.add(northCell)
             }
-            if (self.southCell != nil) {
+            if let southCell = self.southCell {
                 cells.add(southCell)
             }
-            if (self.eastCell != nil) {
+            if let eastCell = self.eastCell {
                 cells.add(eastCell)
             }
-            if (self.westCell != nil) {
+            if let westCell = self.westCell {
                 cells.add(westCell)
             }
             
@@ -93,5 +63,31 @@ class Cell : NSObject {
     
     override var description : String {
         return "row: \(row), column: \(column)"
+    }
+}
+
+extension Cell {
+    func topWallAsAscii() -> String {
+        guard let northCell = northCell, isLinkedTo(cell: northCell) else {
+            return "+---"
+        }
+
+        return "+   "
+    }
+
+    func bodyAsAscii() -> String {
+        guard let westCell = westCell, isLinkedTo(cell: westCell) else {
+            return "|   "
+        }
+
+        return "    "
+    }
+
+    func bottomWallAsAscii() -> String {
+        guard let southCell = southCell, isLinkedTo(cell: southCell) else {
+            return "+---"
+        }
+
+        return "+   "
     }
 }

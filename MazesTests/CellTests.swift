@@ -48,9 +48,9 @@ class CellTests: XCTestCase {
         XCTAssertFalse(cell2.linkedCells.contains(cell))
         XCTAssert(cell2.linkedCells.count == 0)
         
-        XCTAssert(cell.isLinkedToCell(cell: cell2))
+        XCTAssert(cell.isLinkedTo(cell: cell2))
         cell.unlink(fromCell: cell2)
-        XCTAssertFalse(cell.isLinkedToCell(cell: cell2))
+        XCTAssertFalse(cell.isLinkedTo(cell: cell2))
     }
     
     func testNeighbors() {

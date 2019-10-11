@@ -63,25 +63,24 @@ class GridTests: XCTestCase {
         XCTAssertNil(grid.cellAt(row: -1, column: -1))
         XCTAssertNil(grid.cellAt(row: -1, column: 8))
         XCTAssertNil(grid.cellAt(row: 2, column: -1))
-        let cell = grid.cellAt(row: 3, column: 3)
-        XCTAssert((cell?.isKind(of: Cell.self))!)
+        let validCell = grid.cellAt(row: 3, column: 3)
+        XCTAssert((validCell?.isKind(of: Cell.self))!)
     }
 
     func testRandomCell() {
         let grid = Grid(rows: 5, columns: 10)
         XCTAssertNotNil(grid.randomCell())
     }
-    
-    // FIXME: how to test the result of an algorithm?
+
     func testMazeRandomGenerators() {
         let mazeSize = 10
         var grid = Grid(rows: mazeSize, columns: mazeSize)
-        grid.binaryTreeGenerator()
+        grid.buildBinaryTreeMaze()
         var asciiGrid = grid.asAscii()
         print("Binary tree generated maze:\n\(asciiGrid)\n\n")
         
         grid = Grid(rows: mazeSize, columns: mazeSize)
-        grid.sidewinderGenerator()
+        grid.buildSidewinderMaze()
         asciiGrid = grid.asAscii()
         print("Sidewinder generated maze:\n\(asciiGrid)")
     }

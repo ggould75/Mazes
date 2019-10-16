@@ -6,7 +6,7 @@
 //  Copyright © 2017 Marco Mussini. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Cell : NSObject {
     var row: Int

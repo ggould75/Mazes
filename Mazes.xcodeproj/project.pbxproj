@@ -16,6 +16,7 @@
 		022F086F1FA1F1520018BB2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F086E1FA1F1520018BB2C /* Cell.swift */; };
 		022F08781FA46FA00018BB2C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08771FA46FA00018BB2C /* Grid.swift */; };
 		022F087A1FA46FBD0018BB2C /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08791FA46FBD0018BB2C /* GridTests.swift */; };
+		02F37A372356FF72007A72A4 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F37A362356FF72007A72A4 /* Distances.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		022F086E1FA1F1520018BB2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		022F08771FA46FA00018BB2C /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		022F08791FA46FBD0018BB2C /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
+		02F37A362356FF72007A72A4 /* Distances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				022F085A1FA1EEBA0018BB2C /* Info.plist */,
 				022F086E1FA1F1520018BB2C /* Cell.swift */,
 				022F08771FA46FA00018BB2C /* Grid.swift */,
+				02F37A362356FF72007A72A4 /* Distances.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */,
 				022F086F1FA1F1520018BB2C /* Cell.swift in Sources */,
 				022F08781FA46FA00018BB2C /* Grid.swift in Sources */,
+				02F37A372356FF72007A72A4 /* Distances.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

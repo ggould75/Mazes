@@ -14,7 +14,7 @@ class CellTests: XCTestCase {
         let cell = Cell(row: 0, column: 0)
         XCTAssert(cell.row == 0)
         XCTAssert(cell.column == 0)
-        XCTAssert(cell.linkedCells.isKind(of: NSMutableSet.self))
+        XCTAssert(type(of: cell.linkedCells) == Set<Cell>.self)
         XCTAssert(cell.linkedCells.count == 0)
         XCTAssert(cell.neighborCells.isKind(of: NSSet.self))
         XCTAssert(cell.neighborCells.count == 0)
@@ -120,7 +120,14 @@ class CellTests: XCTestCase {
         XCTAssertNil(cell4_0?.westCell)
         XCTAssertEqual(cell4_0?.eastCell, grid.cellAt(row: 4, column: 1))
     }
-    
+
+    func testDijkstra() {
+        let grid = Grid(rows: 5, columns: 5)
+        grid.buildSidewinderMaze()
+        let rootCell = grid.cellAt(row: 0, column: 0)
+        print("\(String(describing: rootCell?.dijkstra().distances))")
+    }
+
     func testTopWallAsAscii() {
         // No north cell
         let cell0_0 = Cell(row: 0, column: 0)

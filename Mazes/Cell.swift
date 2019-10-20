@@ -11,17 +11,17 @@ import Foundation
 class Cell : NSObject {
     var row: Int
     var column: Int
-    var linkedCells: NSMutableSet
+    var linkedCells: Set<Cell>
     var northCell, southCell, eastCell, westCell : Cell?
     
     init(row: Int, column: Int) {
         self.row = row
         self.column = column
-        self.linkedCells = NSMutableSet()
+        self.linkedCells = Set()
     }
     
     func link(toCell: Cell, bidirectional: Bool! = true) {
-        linkedCells.add(toCell)
+        linkedCells.insert(toCell)
         if bidirectional {
             toCell.link(toCell: self, bidirectional: false)
         }
@@ -62,7 +62,32 @@ class Cell : NSObject {
     }
     
     override var description : String {
-        return "row: \(row), column: \(column)"
+        return "(row: \(row), column: \(column))"
+    }
+}
+
+extension Cell {
+    func dijkstra() -> Distances {
+        var distances = Distances(root: self)
+        var frontierCells = [self]
+
+        while !frontierCells.isEmpty {
+            var newFrontierCells = [Cell]()
+            for cell in frontierCells {
+                for linkedCell in cell.linkedCells {
+                    if distances[linkedCell] != nil {
+                        continue
+                    }
+
+                    distances[linkedCell] = (distances[cell] ?? 0) + 1
+                    newFrontierCells.append(linkedCell)
+                }
+            }
+
+            frontierCells = newFrontierCells
+        }
+
+        return distances
     }
 }
 

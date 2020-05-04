@@ -8,25 +8,30 @@
 
 import Foundation
 
+
+// Space: O(r*c) = O(V), where V is number of cells
 struct Grid {
     let numberOfRows: Int
     let numberOfColumns: Int
     var cells: [[Cell]] = []
 
+    // Time: O(2V) = O(V)
     init(rows: Int, columns: Int) {
         self.numberOfRows = rows
         self.numberOfColumns = columns
         setupCells()
         setupCellsNeighbors()
     }
-    
+
+    // Time: O(r*c) = O(V)
     private mutating func setupCells() {
         for row in 0...numberOfRows - 1 {
             let columns = (0...numberOfColumns - 1).map { Cell(row: row, column: $0) }
             cells.append(columns)
         }
     }
-    
+
+    // Time: O(r*c) = O(V)
     private func setupCellsNeighbors() {
         for (rowIdx, rowCells) in cells.enumerated() {
             for (columnIdx, cell) in rowCells.enumerated() {
@@ -37,7 +42,8 @@ struct Grid {
             }
         }
     }
-    
+
+    // Time: O(1)
     func cellAt(row: Int, column: Int) -> Cell? {
         guard 0..<numberOfRows ~= row,
               0..<numberOfColumns ~= column else {
@@ -52,13 +58,16 @@ struct Grid {
         return cellAt(row: numberOfRows.randomize(),
                       column: numberOfColumns.randomize())
     }
+}
 
-    var description : String {
+extension Grid: CustomStringConvertible {
+    var description: String {
         return asAscii()
     }
 }
 
 extension Grid {
+    // Time: O(r*c) = O(V)
     func buildBinaryTreeMaze() {
         for rowCells in cells {
             for cell in rowCells {
@@ -85,6 +94,7 @@ extension Grid {
         }
     }
 
+    // Time: O(r*c) = O(V)
     func buildSidewinderMaze() {
         for rowCells in cells {
             var run = [Cell]()

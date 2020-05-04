@@ -8,32 +8,34 @@
 
 import Foundation
 
-class Cell : NSObject {
+class Cell: NSObject {
     var row: Int
     var column: Int
-    var linkedCells: Set<Cell>
-    var northCell, southCell, eastCell, westCell : Cell?
+    var linkedCells = Set<Cell>()
+    var northCell, southCell, eastCell, westCell: Cell?
     
     init(row: Int, column: Int) {
         self.row = row
         self.column = column
-        self.linkedCells = Set()
     }
-    
+
+    // Time: O(1) assuming insert works in constant time
     func link(toCell: Cell, bidirectional: Bool = true) {
         linkedCells.insert(toCell)
         if bidirectional {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
-    
+
+    // Time: O(1)
     func unlink(fromCell: Cell, bidirectional: Bool = true) {
         linkedCells.remove(fromCell);
         if bidirectional {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
     }
-    
+
+    // Time: O(1)
     func isLinkedTo(cell: Cell?) -> Bool {
         guard let cell = cell else {
             return false
@@ -41,6 +43,7 @@ class Cell : NSObject {
         return linkedCells.contains(cell)
     }
 
+    // Time: O(1) however a set is created each time
     var neighborCells: Set<Cell> {
         get {
             var cells = Set<Cell>()
@@ -60,8 +63,10 @@ class Cell : NSObject {
             return cells
         }
     }
-    
-    override var description : String {
+}
+
+extension Cell {
+    override var description: String {
         return "(row: \(row), column: \(column))"
     }
 }

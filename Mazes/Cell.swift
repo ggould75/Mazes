@@ -29,7 +29,7 @@ class Cell: NSObject {
 
     // Time: O(1)
     func unlink(fromCell: Cell, bidirectional: Bool = true) {
-        linkedCells.remove(fromCell);
+        linkedCells.remove(fromCell)
         if bidirectional {
             fromCell.unlink(fromCell: self, bidirectional: false)
         }
@@ -72,6 +72,7 @@ extension Cell {
 }
 
 extension Cell {
+    // Time: O(V + E) ??
     func dijkstra() -> Distances {
         var distances = Distances(root: self)
         var frontierCells = [self]
@@ -80,9 +81,7 @@ extension Cell {
             var newFrontierCells = [Cell]()
             for cell in frontierCells {
                 for linkedCell in cell.linkedCells {
-                    if distances[linkedCell] != nil {
-                        continue
-                    }
+                    guard distances[linkedCell] == nil else { continue }
 
                     distances[linkedCell] = (distances[cell] ?? 0) + 1
                     newFrontierCells.append(linkedCell)

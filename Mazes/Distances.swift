@@ -6,9 +6,10 @@
 //  Copyright © 2019 Marco Mussini. All rights reserved.
 //
 
+// Space: O(V)
 struct Distances {
     let rootCell: Cell
-    var distances = [Cell : Int]()
+    var distances = [Cell: Int]()
 
     subscript(cell: Cell) -> Int? {
         get {

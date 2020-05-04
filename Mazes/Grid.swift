@@ -51,7 +51,7 @@ struct Grid {
             return nil
         }
 
-        return cells[row][column];
+        return cells[row][column]
     }
     
     func randomCell() -> Cell? {

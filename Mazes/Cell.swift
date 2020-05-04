@@ -20,14 +20,14 @@ class Cell : NSObject {
         self.linkedCells = Set()
     }
     
-    func link(toCell: Cell, bidirectional: Bool! = true) {
+    func link(toCell: Cell, bidirectional: Bool = true) {
         linkedCells.insert(toCell)
         if bidirectional {
             toCell.link(toCell: self, bidirectional: false)
         }
     }
     
-    func unlink(fromCell: Cell, bidirectional: Bool! = true) {
+    func unlink(fromCell: Cell, bidirectional: Bool = true) {
         linkedCells.remove(fromCell);
         if bidirectional {
             fromCell.unlink(fromCell: self, bidirectional: false)
@@ -41,23 +41,23 @@ class Cell : NSObject {
         return linkedCells.contains(cell)
     }
 
-    var neighborCells: NSSet {
+    var neighborCells: Set<Cell> {
         get {
-            let cells = NSMutableSet()
+            var cells = Set<Cell>()
             if let northCell = northCell {
-                cells.add(northCell)
+                cells.insert(northCell)
             }
             if let southCell = self.southCell {
-                cells.add(southCell)
+                cells.insert(southCell)
             }
             if let eastCell = self.eastCell {
-                cells.add(eastCell)
+                cells.insert(eastCell)
             }
             if let westCell = self.westCell {
-                cells.add(westCell)
+                cells.insert(westCell)
             }
             
-            return cells.copy() as! NSSet
+            return cells
         }
     }
     

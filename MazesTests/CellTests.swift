@@ -16,7 +16,7 @@ class CellTests: XCTestCase {
         XCTAssert(cell.column == 0)
         XCTAssert(type(of: cell.linkedCells) == Set<Cell>.self)
         XCTAssert(cell.linkedCells.count == 0)
-        XCTAssert(cell.neighborCells.isKind(of: NSSet.self))
+        XCTAssert(type(of: cell.neighborCells) == Set<Cell>.self)
         XCTAssert(cell.neighborCells.count == 0)
     }
     

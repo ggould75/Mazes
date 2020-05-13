@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // Space: O(r*c) = O(V), where V is number of cells
 struct Grid {
     let numberOfRows: Int
@@ -26,7 +25,7 @@ struct Grid {
     // Time: O(r*c) = O(V)
     private mutating func setupCells() {
         for row in 0...numberOfRows - 1 {
-            let columns = (0...numberOfColumns - 1).map { Cell(row: row, column: $0) }
+            let columns = (0...numberOfColumns - 1).map { Cell(row, $0) }
             cells.append(columns)
         }
     }
@@ -34,11 +33,11 @@ struct Grid {
     // Time: O(r*c) = O(V)
     private func setupCellsNeighbors() {
         for (rowIdx, rowCells) in cells.enumerated() {
-            for (columnIdx, cell) in rowCells.enumerated() {
-                cell.northCell = cellAt(row: rowIdx - 1, column: columnIdx)
-                cell.southCell = cellAt(row: rowIdx + 1, column: columnIdx)
-                cell.westCell = cellAt(row: rowIdx, column: columnIdx - 1)
-                cell.eastCell = cellAt(row: rowIdx, column: columnIdx + 1)
+            for (columnIdx, var cell) in rowCells.enumerated() {
+                cell.set(position: .north, item: cellAt(row: rowIdx - 1, column: columnIdx))
+                cell.set(position: .south, item: cellAt(row: rowIdx + 1, column: columnIdx))
+                cell.set(position: .west, item: cellAt(row: rowIdx, column: columnIdx - 1))
+                cell.set(position: .east, item: cellAt(row: rowIdx, column: columnIdx + 1))
             }
         }
     }
@@ -70,12 +69,12 @@ extension Grid {
     // Time: O(r*c) = O(V)
     func buildBinaryTreeMaze() {
         for rowCells in cells {
-            for cell in rowCells {
+            for var cell in rowCells {
                 var neighbors = [Cell]()
-                if let northCell = cell.northCell {
+                if let northCell = cell.get(position: .north) {
                     neighbors.append(northCell)
                 }
-                if let eastCell = cell.eastCell {
+                if let eastCell = cell.get(position: .east) {
                     neighbors.append(eastCell)
                 }
 
@@ -88,8 +87,9 @@ extension Grid {
                     randomNeighborIndex = neighbors.count.randomize()
                 }
 
-                let randomNeighbor = neighbors[randomNeighborIndex]
-                cell.link(toCell: randomNeighbor)
+                var randomNeighbor = neighbors[randomNeighborIndex]
+
+                cell.link(toCell: &randomNeighbor, bidirectional: true)
             }
         }
     }
@@ -98,26 +98,26 @@ extension Grid {
     func buildSidewinderMaze() {
         for rowCells in cells {
             var run = [Cell]()
-            for cell in rowCells {
+            for var cell in rowCells {
                 run.append(cell)
 
-                let isAtEastBoundary = cell.eastCell == nil
-                let isAtNorthBoundary = cell.northCell == nil
+                let isAtEastBoundary = cell.get(position: .east) == nil
+                let isAtNorthBoundary = cell.get(position: .north) == nil
                 let randomDirection = 2.randomize()
                 let shouldCloseOutRun =
                     isAtEastBoundary || (!isAtNorthBoundary && randomDirection == 0)
 
                 if shouldCloseOutRun {
                     let randomRunMemberIndex = run.count.randomize()
-                    let runMemberCell = run[randomRunMemberIndex]
-                    if let runMemberNorthCell = runMemberCell.northCell {
-                        runMemberCell.link(toCell: runMemberNorthCell)
+                    var runMemberCell = run[randomRunMemberIndex]
+                    if var runMemberNorthCell = runMemberCell.get(position: .north) {
+                        runMemberCell.link(toCell: &runMemberNorthCell, bidirectional: true)
                     }
 
                     run.removeAll()
                 }
-                else if let eastCell = cell.eastCell {
-                    cell.link(toCell: eastCell)
+                else if var eastCell = cell.get(position: .east) {
+                    cell.link(toCell: &eastCell, bidirectional: true)
                 }
             }
         }

@@ -1,13 +1,3 @@
-//
-//  Cell.swift
-//  Mazes
-//
-//  Created by Marco Mussini on 26/10/2017.
-//  Copyright © 2017 Marco Mussini. All rights reserved.
-//
-
-import Foundation
-
 enum Coordinate {
     case north, south, east, west
 }
@@ -54,15 +44,10 @@ protocol Positionable {
 }
 
 extension Positionable {
-    mutating func set<L: Linkable>(position: Coordinate, item: L?) {
+    mutating func set<L: Linkable>(position: Coordinate, item: L) {
         guard let item = item as? Self.Item else {
-            if let itemAtPosition = mapping[position] {
-                neighbours.remove(itemAtPosition)
-            }
-            mapping[position] = nil
             return
         }
-        
         mapping[position] = item
         neighbours.insert(item)
     }
@@ -120,52 +105,67 @@ extension Cell: CustomStringConvertible {
     }
 }
 
-extension Cell {
-    // Time: O(V + E) ??
-    func dijkstra() -> Distances {
-        var distances = Distances(root: self)
-        var frontierCells = [self]
+var cell0_2 = Cell(0, 2)
+var cell1_2 = Cell(1, 2)
+cell1_2.set(position: .north, item: cell0_2)
+print(cell1_2.neighbours)
+print(cell1_2.mapping)
 
-        while !frontierCells.isEmpty {
-            var newFrontierCells = [Cell]()
-            for cell in frontierCells {
-                for linkedCell in cell.linked {
-                    guard distances[linkedCell] == nil else { continue }
+cell1_2.get(position: .north)
+cell1_2.get(position: .south)
 
-                    distances[linkedCell] = (distances[cell] ?? 0) + 1
-                    newFrontierCells.append(linkedCell)
-                }
-            }
+cell1_2.link(toCell: &cell0_2, bidirectional: true)
+print(cell1_2.linked)
+print(cell0_2.linked)
 
-            frontierCells = newFrontierCells
+/**
+typealias Connectable = Linkable & Positionable
+
+protocol Linkable: Hashable {
+    associatedtype Item: Connectable
+    var neighbouringCells: Set<Item> { get set }
+    var linkedCells: Set<Item> { get set }
+}
+
+extension Linkable {
+    mutating func link<T: Linkable>(toCell: inout T, bidirectional: Bool) {
+        guard var toItem = toCell as? Item else { return }
+
+        linkedCells.insert(toItem)
+        if bidirectional {
+            toItem.link(toCell: &self, bidirectional: false)
         }
+    }
 
-        return distances
+    mutating func unlink<T: Linkable>(fromCell: inout T, bidirectional: Bool) {
+        guard var fromItem = fromCell as? Item else { return }
+
+        linkedCells.remove(fromItem)
+        if bidirectional {
+            fromItem.unlink(fromCell: &self, bidirectional: false)
+        }
+    }
+
+    func isLinkedTo<I: Linkable>(cell: I?) -> Bool {
+        guard let item = cell as? Item else { return false }
+
+        return linkedCells.contains(item)
     }
 }
 
-extension Cell {
-    func topWallAsAscii() -> String {
-        guard let northCell = get(position: .north), isLinkedTo(cell: northCell) else {
-            return "+---"
-        }
+class Cell: Connectable {
+    typealias Item = Cell
 
-        return "+   "
+    func set<C, L>(position: C, item: L) where C : Coordinate, L : Linkable {
+
     }
 
-    func bodyAsAscii() -> String {
-        guard let westCell = get(position: .west), isLinkedTo(cell: westCell) else {
-            return "|   "
-        }
-
-        return "    "
+    static func == (lhs: Cell, rhs: Cell) -> Bool {
+        return true
     }
 
-    func bottomWallAsAscii() -> String {
-        guard let southCell = get(position: .south), isLinkedTo(cell: southCell) else {
-            return "+---"
-        }
+    func hash(into hasher: inout Hasher) {
 
-        return "+   "
     }
 }
+*/

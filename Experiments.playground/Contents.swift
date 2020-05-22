@@ -105,6 +105,27 @@ extension Cell: CustomStringConvertible {
     }
 }
 
+public protocol MySet {
+    associatedtype Item
+    func insert(_ item: Item)
+    func remove(_ item: Item)
+    func contains(_ item: Item?) -> Bool
+}
+
+class Test: MySet {
+    func insert(_ item: String) {
+
+    }
+
+    func remove(_ item: String) {
+
+    }
+
+    func contains(_ item: String?) -> Bool {
+        return true
+    }
+}
+
 var cell0_2 = Cell(0, 2)
 var cell1_2 = Cell(1, 2)
 cell1_2.set(position: .north, item: cell0_2)

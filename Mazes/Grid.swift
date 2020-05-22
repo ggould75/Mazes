@@ -8,14 +8,16 @@
 
 import Foundation
 
+// FIXME: make Grid enumerable so I can avoid exposing cells
 // Space: O(r*c) = O(V), where V is number of cells
 struct Grid {
-    let numberOfRows: Int
-    let numberOfColumns: Int
     var cells: [[Cell]] = []
 
+    let numberOfRows: UInt
+    let numberOfColumns: UInt
+
     // Time: O(2V) = O(V)
-    init(rows: Int, columns: Int) {
+    init(rows: UInt, columns: UInt) {
         self.numberOfRows = rows
         self.numberOfColumns = columns
         setupCells()
@@ -33,140 +35,34 @@ struct Grid {
     // Time: O(r*c) = O(V)
     private func setupCellsNeighbors() {
         for (rowIdx, rowCells) in cells.enumerated() {
-            for (columnIdx, var cell) in rowCells.enumerated() {
-                cell.set(position: .north, item: cellAt(row: rowIdx - 1, column: columnIdx))
-                cell.set(position: .south, item: cellAt(row: rowIdx + 1, column: columnIdx))
-                cell.set(position: .west, item: cellAt(row: rowIdx, column: columnIdx - 1))
-                cell.set(position: .east, item: cellAt(row: rowIdx, column: columnIdx + 1))
+            for (columnIdx, cell) in rowCells.enumerated() {
+                cell.set(item: self[rowIdx - 1, columnIdx],
+                         at: .north)
+                cell.set(item: self[rowIdx + 1, columnIdx],
+                         at: .south)
+                cell.set(item: self[rowIdx, columnIdx - 1],
+                         at: .west)
+                cell.set(item: self[rowIdx, columnIdx + 1],
+                         at: .east)
             }
         }
     }
 
-    // Time: O(1)
-    func cellAt(row: Int, column: Int) -> Cell? {
-        guard 0..<numberOfRows ~= row,
-              0..<numberOfColumns ~= column else {
-
-            return nil
+    subscript(row: Int, column: Int) -> Cell? {
+        get {
+            return indexIsValid(row: row, column: column)
+                        ? cells[row][column]
+                        : nil
         }
-
-        return cells[row][column]
-    }
-    
-    func randomCell() -> Cell? {
-        return cellAt(row: numberOfRows.randomize(),
-                      column: numberOfColumns.randomize())
-    }
-}
-
-extension Grid: CustomStringConvertible {
-    var description: String {
-        return asAscii()
-    }
-}
-
-extension Grid {
-    // Time: O(r*c) = O(V)
-    func buildBinaryTreeMaze() {
-        for rowCells in cells {
-            for var cell in rowCells {
-                var neighbors = [Cell]()
-                if let northCell = cell.get(position: .north) {
-                    neighbors.append(northCell)
-                }
-                if let eastCell = cell.get(position: .east) {
-                    neighbors.append(eastCell)
-                }
-
-                if neighbors.count == 0 {
-                    continue
-                }
-
-                var randomNeighborIndex = 0
-                if neighbors.count == 2 {
-                    randomNeighborIndex = neighbors.count.randomize()
-                }
-
-                var randomNeighbor = neighbors[randomNeighborIndex]
-
-                cell.link(toCell: &randomNeighbor, bidirectional: true)
+        set {
+            if let newValue = newValue, indexIsValid(row: row, column: column) {
+                cells[row][column] = newValue
             }
         }
     }
 
-    // Time: O(r*c) = O(V)
-    func buildSidewinderMaze() {
-        for rowCells in cells {
-            var run = [Cell]()
-            for var cell in rowCells {
-                run.append(cell)
-
-                let isAtEastBoundary = cell.get(position: .east) == nil
-                let isAtNorthBoundary = cell.get(position: .north) == nil
-                let randomDirection = 2.randomize()
-                let shouldCloseOutRun =
-                    isAtEastBoundary || (!isAtNorthBoundary && randomDirection == 0)
-
-                if shouldCloseOutRun {
-                    let randomRunMemberIndex = run.count.randomize()
-                    var runMemberCell = run[randomRunMemberIndex]
-                    if var runMemberNorthCell = runMemberCell.get(position: .north) {
-                        runMemberCell.link(toCell: &runMemberNorthCell, bidirectional: true)
-                    }
-
-                    run.removeAll()
-                }
-                else if var eastCell = cell.get(position: .east) {
-                    cell.link(toCell: &eastCell, bidirectional: true)
-                }
-            }
-        }
-    }
-}
-
-extension Grid {
-    func asAscii() -> String {
-        var output = ""
-        var topWallOutput = ""
-        var bottomWallOutput = ""
-        var bodyWallOutput = ""
-        var rowIndex = 0
-        var columnIndex = 0
-
-        for rowCells in cells {
-            columnIndex = 0
-            for cell in rowCells {
-                topWallOutput += cell.topWallAsAscii()
-                bodyWallOutput += cell.bodyAsAscii()
-
-                let isLastRow = rowIndex == cells.count - 1
-                if (isLastRow) {
-                    bottomWallOutput += cell.bottomWallAsAscii()
-                }
-
-                let isLastColumn = columnIndex == rowCells.count - 1
-                if (isLastColumn) {
-                    topWallOutput += "+"
-                    bodyWallOutput += "|"
-                }
-
-                columnIndex = columnIndex + 1
-            }
-
-            output += topWallOutput + "\n" + bodyWallOutput + "\n"
-            topWallOutput = ""
-            bodyWallOutput = ""
-            rowIndex = rowIndex + 1
-        }
-
-        output += bottomWallOutput + "+"
-
-        return output
-    }
-}
-
-extension Int {
-    func randomize() -> Int {
-        return Int(arc4random_uniform(UInt32(self)))
+    private func indexIsValid(row: Int, column: Int) -> Bool {
+        return row >= 0 && row < numberOfRows &&
+               column >= 0 && column < numberOfColumns
     }
 }

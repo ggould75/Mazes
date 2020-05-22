@@ -18,7 +18,6 @@ extension Cell {
         while !frontierCells.isEmpty {
             var newFrontierCells = [Cell]()
             for cell in frontierCells {
-//                for case let linkedCell as? Cell in cell.linked {
                 for linkedCell in cell.linked {
                     guard distances[linkedCell as! Cell] == nil else { continue }
 

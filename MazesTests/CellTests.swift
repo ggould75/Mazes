@@ -11,165 +11,106 @@ import XCTest
 
 class CellTests: XCTestCase {
     func testInit() {
-        let cell = Cell(row: 0, column: 0)
-        XCTAssert(cell.row == 0)
-        XCTAssert(cell.column == 0)
-        XCTAssert(type(of: cell.linkedCells) == Set<Cell>.self)
-        XCTAssert(cell.linkedCells.count == 0)
-        XCTAssert(type(of: cell.neighborCells) == Set<Cell>.self)
-        XCTAssert(cell.neighborCells.count == 0)
-    }
-    
-    func testLinks() {
-        let cell = Cell(row: 0, column: 0)
-        let cell2 = Cell(row: 0, column: 1)
-        
-        cell.link(toCell: cell2)
-        cell.link(toCell: cell2)
-        XCTAssert(cell.linkedCells.contains(cell2))
-        XCTAssert(cell.linkedCells.count == 1)
-        XCTAssert(cell2.linkedCells.contains(cell))
-        XCTAssert(cell2.linkedCells.count == 1)
-        
-        cell.unlink(fromCell: cell2, bidirectional: false)
-        XCTAssertFalse(cell.linkedCells.contains(cell2))
-        XCTAssert(cell.linkedCells.count == 0)
-        XCTAssert(cell2.linkedCells.contains(cell))
-        XCTAssert(cell2.linkedCells.count == 1)
-        
-        cell.unlink(fromCell: cell2)
-        cell.unlink(fromCell: cell2)
-        XCTAssertFalse(cell2.linkedCells.contains(cell))
-        XCTAssert(cell2.linkedCells.count == 0)
-        
-        cell.link(toCell: cell2, bidirectional: false)
-        XCTAssert(cell.linkedCells.contains(cell2))
-        XCTAssert(cell.linkedCells.count == 1)
-        XCTAssertFalse(cell2.linkedCells.contains(cell))
-        XCTAssert(cell2.linkedCells.count == 0)
-        
-        XCTAssert(cell.isLinkedTo(cell: cell2))
-        cell.unlink(fromCell: cell2)
-        XCTAssertFalse(cell.isLinkedTo(cell: cell2))
-    }
-    
-    func testNeighbors() {
-        let cell = Cell(row: 2, column: 2)
-        
-        XCTAssert(cell.neighborCells.count == 0)
-        XCTAssertNil(cell.northCell)
-        XCTAssertNil(cell.southCell)
-        XCTAssertNil(cell.eastCell)
-        XCTAssertNil(cell.westCell)
-        
-        let northCell = Cell(row: 1, column: 2)
-        let southCell = Cell(row: 3, column: 2)
-        let eastCell = Cell(row: 2, column: 1)
-        let westCell = Cell(row: 2, column: 3)
-        cell.northCell = northCell
-        cell.southCell = southCell
-        cell.eastCell = eastCell
-        cell.westCell = westCell
-        XCTAssertEqual(cell.northCell, northCell)
-        XCTAssertEqual(cell.northCell, northCell)
-        XCTAssertEqual(cell.southCell, southCell)
-        XCTAssertEqual(cell.eastCell, eastCell)
-        XCTAssertEqual(cell.westCell, westCell)
-        XCTAssert(cell.neighborCells.count == 4)
-        XCTAssert(cell.neighborCells.contains(northCell))
-        XCTAssert(cell.neighborCells.contains(southCell))
-        XCTAssert(cell.neighborCells.contains(eastCell))
-        XCTAssert(cell.neighborCells.contains(westCell))
-    }
-    
-    func testNeighborCellsAreSetCorrectly() {
-        let grid = Grid(rows: 5, columns: 10)
-        
-        // neighbors of middle cell
-        let cell2_2 = grid.cellAt(row: 2, column: 2)
-        XCTAssertEqual(cell2_2?.northCell, grid.cellAt(row: 1, column: 2))
-        XCTAssertEqual(cell2_2?.southCell, grid.cellAt(row: 3, column: 2))
-        XCTAssertEqual(cell2_2?.westCell, grid.cellAt(row: 2, column: 1))
-        XCTAssertEqual(cell2_2?.eastCell, grid.cellAt(row: 2, column: 3))
-        
-        // top-left cell
-        let cell0_0 = grid.cellAt(row: 0, column: 0)
-        XCTAssertNil(cell0_0?.northCell)
-        XCTAssertEqual(cell0_0?.southCell, grid.cellAt(row: 1, column: 0))
-        XCTAssertNil(cell0_0?.westCell)
-        XCTAssertEqual(cell0_0?.eastCell, grid.cellAt(row: 0, column: 1))
-        
-        // top-right cell
-        let cell0_9 = grid.cellAt(row: 0, column: 9)
-        XCTAssertNil(cell0_9?.northCell)
-        XCTAssertEqual(cell0_9?.southCell, grid.cellAt(row: 1, column: 9))
-        XCTAssertEqual(cell0_9?.westCell, grid.cellAt(row: 0, column: 8))
-        XCTAssertNil(cell0_9?.eastCell)
-        
-        // bottom-right cell
-        let cell4_9 = grid.cellAt(row: 4, column: 9)
-        XCTAssertEqual(cell4_9?.northCell, grid.cellAt(row: 3, column: 9))
-        XCTAssertNil(cell4_9?.southCell)
-        XCTAssertEqual(cell4_9?.westCell, grid.cellAt(row: 4, column: 8))
-        XCTAssertNil(cell4_9?.eastCell)
-        
-        // bottom-left cell
-        let cell4_0 = grid.cellAt(row: 4, column: 0)
-        XCTAssertEqual(cell4_0?.northCell, grid.cellAt(row: 3, column: 0))
-        XCTAssertNil(cell4_0?.southCell)
-        XCTAssertNil(cell4_0?.westCell)
-        XCTAssertEqual(cell4_0?.eastCell, grid.cellAt(row: 4, column: 1))
+        let cell0 = Cell(0, 0)
+        XCTAssert(cell0.row == 0)
+        XCTAssert(cell0.column == 0)
+        XCTAssert(cell0.neighbors.count == 0)
+
+        let cell1 = Cell(10, 5)
+        XCTAssert(cell1.row == 10)
+        XCTAssert(cell1.column == 5)
     }
 
-    func testDijkstra() {
-        let grid = Grid(rows: 5, columns: 5)
-        grid.buildSidewinderMaze()
-        let rootCell = grid.cellAt(row: 0, column: 0)
-        print("\(String(describing: rootCell?.dijkstra().distances))")
+    func testBidirectionalLink() {
+        let cell0 = Cell(0, 0)
+        let cell1 = Cell(0, 1)
+
+        cell0.link(to: cell1)
+
+        XCTAssertEqual(cell0.linked.count, 1)
+        XCTAssertEqual(cell1.linked.count, 1)
+        XCTAssertEqual(cell0.linked.first, cell1)
+        XCTAssertEqual(cell0.linked.first?.hashValue, cell1.hashValue)
+        XCTAssertEqual(cell1.linked.first, cell0)
+        XCTAssertEqual(cell1.linked.first?.hashValue, cell0.hashValue)
     }
 
-    func testTopWallAsAscii() {
-        // No north cell
-        let cell0_0 = Cell(row: 0, column: 0)
-        XCTAssertEqual(cell0_0.topWallAsAscii(), "+---")
-        
-        // North cell but not linked
-        let cell1_0 = Cell(row: 1, column: 0)
-        cell1_0.northCell = cell0_0
-        XCTAssertEqual(cell1_0.topWallAsAscii(), "+---")
-        
-        // North cell linked
-        cell1_0.link(toCell: cell0_0)
-        XCTAssertEqual(cell1_0.topWallAsAscii(), "+   ")
+    func testUnidirectionalLink() {
+        let cell0 = Cell(0, 0)
+        let cell1 = Cell(0, 1)
+
+        cell0.link(to: cell1, bidirectional: false)
+
+        XCTAssertEqual(cell0.linked.count, 1)
+        XCTAssertEqual(cell1.linked.count, 0)
+        XCTAssertEqual(cell0.linked.first, cell1)
     }
-    
-    func testBodyAsAscii() {
-        // No west cell
-        let cell0_0 = Cell(row: 0, column: 0)
-        XCTAssertEqual(cell0_0.bodyAsAscii(), "|   ")
-        
-        // West cell but not linked
-        let cell0_1 = Cell(row: 0, column: 1)
-        cell0_1.westCell = cell0_0
-        XCTAssertEqual(cell0_1.bodyAsAscii(), "|   ")
-        
-        // West cell linked
-        cell0_1.link(toCell: cell0_0)
-        XCTAssertEqual(cell0_1.bodyAsAscii(), "    ")
+
+    func testBidirectionalUnlink() {
+        let cell0 = Cell(0, 0)
+        let cell1 = Cell(0, 1)
+
+        cell0.link(to: cell1)
+        cell0.unlink(from: cell1)
+
+        XCTAssertEqual(cell0.linked.count, 0)
+        XCTAssertEqual(cell1.linked.count, 0)
     }
-    
-    func testBottomWallAsAscii() {
-        // No south cell
-        let cell1_0 = Cell(row: 1, column: 0)
-        XCTAssertEqual(cell1_0.bottomWallAsAscii(), "+---")
-        
-        // South cell but not linked
-        let cell0_0 = Cell(row: 0, column: 0)
-        cell0_0.southCell = cell1_0
-        XCTAssertEqual(cell0_0.bottomWallAsAscii(), "+---")
-        
-        // South cell linked
-        cell0_0.link(toCell: cell1_0)
-        XCTAssertEqual(cell0_0.bottomWallAsAscii(), "+   ")
+
+    func testUnidirectionalUnlink() {
+        let cell0 = Cell(0, 0)
+        let cell1 = Cell(0, 1)
+
+        cell0.link(to: cell1, bidirectional: true)
+        cell0.unlink(from: cell1, bidirectional: false)
+
+        XCTAssertEqual(cell0.linked.count, 0)
+        XCTAssertEqual(cell1.linked.count, 1)
+        XCTAssertEqual(cell1.linked.first, cell0)
+
+        cell1.unlink(from: cell0, bidirectional: false)
+        XCTAssertEqual(cell1.linked.count, 0)
+    }
+
+    func testCellCannotBeLinkedTwice() {
+        let cellPivot = Cell(0, 0)
+        let cell = Cell(0, 1)
+
+        cellPivot.link(to: cell)
+        cellPivot.link(to: cell)
+
+        XCTAssertEqual(cellPivot.linked.count, 1)
+        XCTAssertEqual(cell.linked.count, 1)
+        XCTAssertTrue(cellPivot.linked.contains(cell))
+        XCTAssertTrue(cell.linked.contains(cellPivot))
+    }
+
+    func testNeighborsLayout() {
+        let cellPivot = Cell(2, 2)
+
+        XCTAssertNil(cellPivot.get(.north))
+        XCTAssertNil(cellPivot.get(.south))
+        XCTAssertNil(cellPivot.get(.east))
+        XCTAssertNil(cellPivot.get(.west))
+
+        let northCell = Cell(1, 2)
+        let southCell = Cell(3, 2)
+        let eastCell = Cell(2, 1)
+        let westCell = Cell(2, 3)
+
+        cellPivot.set(item: northCell, at: .north)
+        cellPivot.set(item: southCell, at: .south)
+        cellPivot.set(item: eastCell, at: .east)
+        cellPivot.set(item: westCell, at: .west)
+
+        XCTAssertEqual(cellPivot.get(.north), northCell)
+        XCTAssertEqual(cellPivot.get(.south), southCell)
+        XCTAssertEqual(cellPivot.get(.east), eastCell)
+        XCTAssertEqual(cellPivot.get(.west), westCell)
+        XCTAssertEqual(cellPivot.neighbors.count, 4)
+        XCTAssertTrue(cellPivot.neighbors.contains(northCell))
+        XCTAssertTrue(cellPivot.neighbors.contains(southCell))
+        XCTAssertTrue(cellPivot.neighbors.contains(eastCell))
+        XCTAssertTrue(cellPivot.neighbors.contains(westCell))
     }
 }

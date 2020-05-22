@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020269FE247297D6006FE5E9 /* LinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020269FD247297D6006FE5E9 /* LinkableTests.swift */; };
 		022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F084E1FA1EEBA0018BB2C /* AppDelegate.swift */; };
 		022F08511FA1EEBA0018BB2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08501FA1EEBA0018BB2C /* ViewController.swift */; };
 		022F08541FA1EEBA0018BB2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022F08521FA1EEBA0018BB2C /* Main.storyboard */; };
@@ -16,7 +17,14 @@
 		022F086F1FA1F1520018BB2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F086E1FA1F1520018BB2C /* Cell.swift */; };
 		022F08781FA46FA00018BB2C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08771FA46FA00018BB2C /* Grid.swift */; };
 		022F087A1FA46FBD0018BB2C /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08791FA46FBD0018BB2C /* GridTests.swift */; };
-		02F37A372356FF72007A72A4 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F37A362356FF72007A72A4 /* Distances.swift */; };
+		026CCC8424766C2400CC3634 /* PositionableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8324766C2400CC3634 /* PositionableTests.swift */; };
+		026CCC8624766C3700CC3634 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8524766C3700CC3634 /* Positionable.swift */; };
+		026CCC8A24766CCC00CC3634 /* Linkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8924766CCC00CC3634 /* Linkable.swift */; };
+		026CCC8C2476719D00CC3634 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8B2476719D00CC3634 /* TestHelpers.swift */; };
+		026CCC8E2476736A00CC3634 /* Connectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8D2476736A00CC3634 /* Connectable.swift */; };
+		026CCC902477D65500CC3634 /* MazeBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8F2477D65500CC3634 /* MazeBuilders.swift */; };
+		026CCC922477DA3900CC3634 /* MazeBuildersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */; };
+		026CCC942477DD5E00CC3634 /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC932477DD5E00CC3634 /* Dijkstra.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		020269FD247297D6006FE5E9 /* LinkableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkableTests.swift; sourceTree = "<group>"; };
 		022F084B1FA1EEBA0018BB2C /* Mazes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mazes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		022F084E1FA1EEBA0018BB2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		022F08501FA1EEBA0018BB2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +52,14 @@
 		022F086E1FA1F1520018BB2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		022F08771FA46FA00018BB2C /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		022F08791FA46FBD0018BB2C /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
-		02F37A362356FF72007A72A4 /* Distances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
+		026CCC8324766C2400CC3634 /* PositionableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionableTests.swift; sourceTree = "<group>"; };
+		026CCC8524766C3700CC3634 /* Positionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
+		026CCC8924766CCC00CC3634 /* Linkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linkable.swift; sourceTree = "<group>"; };
+		026CCC8B2476719D00CC3634 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		026CCC8D2476736A00CC3634 /* Connectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectable.swift; sourceTree = "<group>"; };
+		026CCC8F2477D65500CC3634 /* MazeBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeBuilders.swift; sourceTree = "<group>"; };
+		026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeBuildersTests.swift; sourceTree = "<group>"; };
+		026CCC932477DD5E00CC3634 /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dijkstra.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +109,11 @@
 				022F085A1FA1EEBA0018BB2C /* Info.plist */,
 				022F086E1FA1F1520018BB2C /* Cell.swift */,
 				022F08771FA46FA00018BB2C /* Grid.swift */,
-				02F37A362356FF72007A72A4 /* Distances.swift */,
+				026CCC8524766C3700CC3634 /* Positionable.swift */,
+				026CCC8924766CCC00CC3634 /* Linkable.swift */,
+				026CCC8D2476736A00CC3634 /* Connectable.swift */,
+				026CCC8F2477D65500CC3634 /* MazeBuilders.swift */,
+				026CCC932477DD5E00CC3634 /* Dijkstra.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -104,6 +124,10 @@
 				022F08631FA1EEBB0018BB2C /* CellTests.swift */,
 				022F08651FA1EEBB0018BB2C /* Info.plist */,
 				022F08791FA46FBD0018BB2C /* GridTests.swift */,
+				020269FD247297D6006FE5E9 /* LinkableTests.swift */,
+				026CCC8324766C2400CC3634 /* PositionableTests.swift */,
+				026CCC8B2476719D00CC3634 /* TestHelpers.swift */,
+				026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */,
 			);
 			path = MazesTests;
 			sourceTree = "<group>";
@@ -213,11 +237,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026CCC8624766C3700CC3634 /* Positionable.swift in Sources */,
+				026CCC942477DD5E00CC3634 /* Dijkstra.swift in Sources */,
 				022F08511FA1EEBA0018BB2C /* ViewController.swift in Sources */,
+				026CCC8E2476736A00CC3634 /* Connectable.swift in Sources */,
+				026CCC8A24766CCC00CC3634 /* Linkable.swift in Sources */,
 				022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */,
 				022F086F1FA1F1520018BB2C /* Cell.swift in Sources */,
+				026CCC902477D65500CC3634 /* MazeBuilders.swift in Sources */,
 				022F08781FA46FA00018BB2C /* Grid.swift in Sources */,
-				02F37A372356FF72007A72A4 /* Distances.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026CCC922477DA3900CC3634 /* MazeBuildersTests.swift in Sources */,
 				022F08641FA1EEBB0018BB2C /* CellTests.swift in Sources */,
+				026CCC8C2476719D00CC3634 /* TestHelpers.swift in Sources */,
+				020269FE247297D6006FE5E9 /* LinkableTests.swift in Sources */,
+				026CCC8424766C2400CC3634 /* PositionableTests.swift in Sources */,
 				022F087A1FA46FBD0018BB2C /* GridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
 				INFOPLIST_FILE = Mazes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckysoftware.Mazes;
@@ -390,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
 				INFOPLIST_FILE = Mazes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckysoftware.Mazes;
@@ -405,6 +439,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
 				INFOPLIST_FILE = MazesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckysoftware.MazesTests;
@@ -421,6 +456,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
 				INFOPLIST_FILE = MazesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckysoftware.MazesTests;

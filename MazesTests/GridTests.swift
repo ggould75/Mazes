@@ -10,78 +10,104 @@ import XCTest
 @testable import Mazes
 
 class GridTests: XCTestCase {
-    func testInit() {
-        let numberOfRows = 5
-        let numberOfColumns = 10
+
+    func testGridSetup() {
+        let numberOfRows: UInt = 5
+        let numberOfColumns: UInt = 8
         let grid = Grid(rows: numberOfRows, columns: numberOfColumns)
-        XCTAssert(grid.numberOfRows == numberOfRows)
-        XCTAssert(grid.numberOfColumns == numberOfColumns)
-        
+
+        XCTAssertEqual(grid.numberOfRows, numberOfRows)
+        XCTAssertEqual(grid.numberOfColumns, numberOfColumns)
+    }
+
+    func testSubscriptGet() {
+        let numberOfRows: UInt = 3
+        let numberOfColumns: UInt = 6
+        let grid = Grid(rows: numberOfRows, columns: numberOfColumns)
+
         for row in 0...numberOfRows - 1 {
             for column in 0...numberOfColumns - 1 {
-                let cell = grid.cells[row][column]
-                XCTAssert(cell.isKind(of: Cell.self))
-                XCTAssert(cell.row == row)
-                XCTAssert(cell.column == column)
+                let cell = grid[Int(row), Int(column)]
+                XCTAssert(cell?.row == row)
+                XCTAssert(cell?.column == column)
             }
         }
-        
-        let cell2_2 = grid.cells[2][2]
-        XCTAssertNotNil(cell2_2.northCell)
-        XCTAssertNotNil(cell2_2.southCell)
-        XCTAssertNotNil(cell2_2.eastCell)
-        XCTAssertNotNil(cell2_2.westCell)
-        
-        let cell0_0 = grid.cells[0][0]
-        XCTAssertNil(cell0_0.northCell)
-        XCTAssertNotNil(cell0_0.southCell)
-        XCTAssertNotNil(cell0_0.eastCell)
-        XCTAssertNil(cell0_0.westCell)
-        
-        let cell4_0 = grid.cells[4][0]
-        XCTAssertNotNil(cell4_0.northCell)
-        XCTAssertNil(cell4_0.southCell)
-        XCTAssertNotNil(cell4_0.eastCell)
-        XCTAssertNil(cell4_0.westCell)
-        
-        let cell4_9 = grid.cells[4][9]
-        XCTAssertNotNil(cell4_9.northCell)
-        XCTAssertNil(cell4_9.southCell)
-        XCTAssertNil(cell4_9.eastCell)
-        XCTAssertNotNil(cell4_9.westCell)
-        
-        let cell0_9 = grid.cells[0][9]
-        XCTAssertNil(cell0_9.northCell)
-        XCTAssertNotNil(cell0_9.southCell)
-        XCTAssertNil(cell0_9.eastCell)
-        XCTAssertNotNil(cell0_9.westCell)
-    }
-    
-    func testCellAt() {
-        let grid = Grid(rows: 5, columns: 10)
-        XCTAssertNil(grid.cellAt(row: 5, column: 10))
-        XCTAssertNil(grid.cellAt(row: -1, column: -1))
-        XCTAssertNil(grid.cellAt(row: -1, column: 8))
-        XCTAssertNil(grid.cellAt(row: 2, column: -1))
-        let validCell = grid.cellAt(row: 3, column: 3)
-        XCTAssert((validCell?.isKind(of: Cell.self))!)
     }
 
-    func testRandomCell() {
-        let grid = Grid(rows: 5, columns: 10)
-        XCTAssertNotNil(grid.randomCell())
+    func testSubscriptGet_OutOfBounds() {
+        let numberOfRows: UInt = 3
+        let numberOfColumns: UInt = 6
+        let grid = Grid(rows: numberOfRows, columns: numberOfColumns)
+
+        let rowIndexOutOfBoundCell = grid[3, 0]
+        XCTAssertNil(rowIndexOutOfBoundCell)
+        let columnIndexOutOfBoundCell = grid[0, 6]
+        XCTAssertNil(columnIndexOutOfBoundCell)
+        let bothIndexesOutOfBoundCell = grid[-1, -1]
+        XCTAssertNil(bothIndexesOutOfBoundCell)
     }
 
-    func testMazeRandomGenerators() {
-        let mazeSize = 10
-        var grid = Grid(rows: mazeSize, columns: mazeSize)
-        grid.buildBinaryTreeMaze()
-        var asciiGrid = grid.asAscii()
-        print("Binary tree generated maze:\n\(asciiGrid)\n\n")
-        
-        grid = Grid(rows: mazeSize, columns: mazeSize)
-        grid.buildSidewinderMaze()
-        asciiGrid = grid.asAscii()
-        print("Sidewinder generated maze:\n\(asciiGrid)")
+    func testSubscriptSet() {
+        let rows = 3
+        let columns = 6
+        var grid = Grid(rows: UInt(rows), columns: UInt(columns))
+
+        let cell10_5 = Cell(10, 5)
+        grid[0, 0] = cell10_5
+        XCTAssertEqual(grid[0, 0], cell10_5)
+
+        let cell2_5 = Cell(2, 5)
+        grid[2, 5] = cell2_5
+        XCTAssertEqual(grid[2, 5], cell2_5)
+    }
+
+    func testSubscriptSet_OutOfBounds() {
+        let rows = 3
+        let columns = 6
+        var grid = Grid(rows: UInt(rows), columns: UInt(columns))
+
+        // Trying to set a cell at Out Of Bounds indexes
+        grid[rows, columns] = Cell(UInt(rows), UInt(columns))
+        XCTAssertNil(grid[rows, columns])
+        grid[0, columns] = Cell(0, UInt(columns))
+        XCTAssertNil(grid[0, columns])
+        grid[rows, 0] = Cell(UInt(rows), 0)
+        XCTAssertNil(grid[rows, 0])
+        grid[-1, -1] = Cell(0, 0)
+        XCTAssertNil(grid[-1, -1])
+    }
+
+    func testNeighborCellsExpectedLayout() {
+        let grid = Grid(rows: 5, columns: 10)
+
+        let centralCell = grid[2, 2]
+        XCTAssertEqual(centralCell?.get(.north), grid[1, 2])
+        XCTAssertEqual(centralCell?.get(.south), grid[3, 2])
+        XCTAssertEqual(centralCell?.get(.west), grid[2, 1])
+        XCTAssertEqual(centralCell?.get(.east), grid[2, 3])
+
+        let topLeftCell = grid[0, 0]
+        XCTAssertNil(topLeftCell?.get(.north))
+        XCTAssertEqual(topLeftCell?.get(.south), grid[1, 0])
+        XCTAssertNil(topLeftCell?.get(.west))
+        XCTAssertEqual(topLeftCell?.get(.east), grid[0, 1])
+
+        let topRightCell = grid[0, 9]
+        XCTAssertNil(topRightCell?.get(.north))
+        XCTAssertEqual(topRightCell?.get(.south), grid[1, 9])
+        XCTAssertEqual(topRightCell?.get(.west), grid[0, 8])
+        XCTAssertNil(topRightCell?.get(.east))
+
+        let bottomRightCell = grid[4, 9]
+        XCTAssertEqual(bottomRightCell?.get(.north), grid[3, 9])
+        XCTAssertNil(bottomRightCell?.get(.south))
+        XCTAssertEqual(bottomRightCell?.get(.west), grid[4, 8])
+        XCTAssertNil(bottomRightCell?.get(.east))
+
+        let bottomLeftCell = grid[4, 0]
+        XCTAssertEqual(bottomLeftCell?.get(.north), grid[3, 0])
+        XCTAssertNil(bottomLeftCell?.get(.south))
+        XCTAssertNil(bottomLeftCell?.get(.west))
+        XCTAssertEqual(bottomLeftCell?.get(.east), grid[4, 1])
     }
 }

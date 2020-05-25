@@ -25,6 +25,7 @@
 		026CCC902477D65500CC3634 /* MazeBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8F2477D65500CC3634 /* MazeBuilders.swift */; };
 		026CCC922477DA3900CC3634 /* MazeBuildersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */; };
 		026CCC942477DD5E00CC3634 /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC932477DD5E00CC3634 /* Dijkstra.swift */; };
+		02B3F876247BCF0900E4D850 /* MazeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B3F875247BCF0900E4D850 /* MazeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		026CCC8F2477D65500CC3634 /* MazeBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeBuilders.swift; sourceTree = "<group>"; };
 		026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeBuildersTests.swift; sourceTree = "<group>"; };
 		026CCC932477DD5E00CC3634 /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dijkstra.swift; sourceTree = "<group>"; };
+		02B3F875247BCF0900E4D850 /* MazeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				026CCC8D2476736A00CC3634 /* Connectable.swift */,
 				026CCC8F2477D65500CC3634 /* MazeBuilders.swift */,
 				026CCC932477DD5E00CC3634 /* Dijkstra.swift */,
+				02B3F875247BCF0900E4D850 /* MazeView.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				026CCC8624766C3700CC3634 /* Positionable.swift in Sources */,
 				026CCC942477DD5E00CC3634 /* Dijkstra.swift in Sources */,
 				022F08511FA1EEBA0018BB2C /* ViewController.swift in Sources */,
+				02B3F876247BCF0900E4D850 /* MazeView.swift in Sources */,
 				026CCC8E2476736A00CC3634 /* Connectable.swift in Sources */,
 				026CCC8A24766CCC00CC3634 /* Linkable.swift in Sources */,
 				022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */,

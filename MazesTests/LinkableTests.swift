@@ -83,5 +83,7 @@ class LinkableTests: XCTestCase {
         item1.unlink(from: item0, bidirectional: false)
         XCTAssertFalse(item0.isLinkedTo(item1))
         XCTAssertFalse(item1.isLinkedTo(item0))
+
+        XCTAssertFalse(item0.isLinkedTo(nil))
     }
 }

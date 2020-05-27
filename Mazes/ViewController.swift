@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         return mazeView
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+
     init(shouldIgnoreUserDefaults: Bool = false) {
         self.shouldIgnoreUserDefaults = shouldIgnoreUserDefaults
         super.init(nibName: nil, bundle: nil)

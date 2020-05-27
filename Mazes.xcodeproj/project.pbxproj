@@ -10,13 +10,14 @@
 		020269FE247297D6006FE5E9 /* LinkableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020269FD247297D6006FE5E9 /* LinkableTests.swift */; };
 		022F084F1FA1EEBA0018BB2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F084E1FA1EEBA0018BB2C /* AppDelegate.swift */; };
 		022F08511FA1EEBA0018BB2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08501FA1EEBA0018BB2C /* ViewController.swift */; };
-		022F08541FA1EEBA0018BB2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022F08521FA1EEBA0018BB2C /* Main.storyboard */; };
 		022F08561FA1EEBA0018BB2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022F08551FA1EEBA0018BB2C /* Assets.xcassets */; };
 		022F08591FA1EEBA0018BB2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022F08571FA1EEBA0018BB2C /* LaunchScreen.storyboard */; };
 		022F08641FA1EEBB0018BB2C /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08631FA1EEBB0018BB2C /* CellTests.swift */; };
 		022F086F1FA1F1520018BB2C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F086E1FA1F1520018BB2C /* Cell.swift */; };
 		022F08781FA46FA00018BB2C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08771FA46FA00018BB2C /* Grid.swift */; };
 		022F087A1FA46FBD0018BB2C /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022F08791FA46FBD0018BB2C /* GridTests.swift */; };
+		024D6760247E9B0200D53BD2 /* MazesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D675F247E9B0200D53BD2 /* MazesUITests.swift */; };
+		024D6782247ED63E00D53BD2 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024D6781247ED63E00D53BD2 /* ViewControllerTests.swift */; };
 		026CCC8424766C2400CC3634 /* PositionableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8324766C2400CC3634 /* PositionableTests.swift */; };
 		026CCC8624766C3700CC3634 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8524766C3700CC3634 /* Positionable.swift */; };
 		026CCC8A24766CCC00CC3634 /* Linkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CCC8924766CCC00CC3634 /* Linkable.swift */; };
@@ -36,6 +37,13 @@
 			remoteGlobalIDString = 022F084A1FA1EEBA0018BB2C;
 			remoteInfo = Mazes;
 		};
+		024D6762247E9B0200D53BD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 022F08431FA1EEBA0018BB2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 022F084A1FA1EEBA0018BB2C;
+			remoteInfo = Mazes;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +51,6 @@
 		022F084B1FA1EEBA0018BB2C /* Mazes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mazes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		022F084E1FA1EEBA0018BB2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		022F08501FA1EEBA0018BB2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		022F08531FA1EEBA0018BB2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		022F08551FA1EEBA0018BB2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		022F08581FA1EEBA0018BB2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		022F085A1FA1EEBA0018BB2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +60,10 @@
 		022F086E1FA1F1520018BB2C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		022F08771FA46FA00018BB2C /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		022F08791FA46FBD0018BB2C /* GridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
+		024D675D247E9B0200D53BD2 /* MazesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MazesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		024D675F247E9B0200D53BD2 /* MazesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazesUITests.swift; sourceTree = "<group>"; };
+		024D6761247E9B0200D53BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		024D6781247ED63E00D53BD2 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		026CCC8324766C2400CC3634 /* PositionableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionableTests.swift; sourceTree = "<group>"; };
 		026CCC8524766C3700CC3634 /* Positionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
 		026CCC8924766CCC00CC3634 /* Linkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linkable.swift; sourceTree = "<group>"; };
@@ -79,6 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		024D675A247E9B0200D53BD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,6 +105,7 @@
 			children = (
 				022F084D1FA1EEBA0018BB2C /* Mazes */,
 				022F08621FA1EEBB0018BB2C /* MazesTests */,
+				024D675E247E9B0200D53BD2 /* MazesUITests */,
 				022F084C1FA1EEBA0018BB2C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +115,7 @@
 			children = (
 				022F084B1FA1EEBA0018BB2C /* Mazes.app */,
 				022F085F1FA1EEBB0018BB2C /* MazesTests.xctest */,
+				024D675D247E9B0200D53BD2 /* MazesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,7 +125,6 @@
 			children = (
 				022F084E1FA1EEBA0018BB2C /* AppDelegate.swift */,
 				022F08501FA1EEBA0018BB2C /* ViewController.swift */,
-				022F08521FA1EEBA0018BB2C /* Main.storyboard */,
 				022F08551FA1EEBA0018BB2C /* Assets.xcassets */,
 				022F08571FA1EEBA0018BB2C /* LaunchScreen.storyboard */,
 				022F085A1FA1EEBA0018BB2C /* Info.plist */,
@@ -131,8 +150,18 @@
 				026CCC8324766C2400CC3634 /* PositionableTests.swift */,
 				026CCC8B2476719D00CC3634 /* TestHelpers.swift */,
 				026CCC912477DA3900CC3634 /* MazeBuildersTests.swift */,
+				024D6781247ED63E00D53BD2 /* ViewControllerTests.swift */,
 			);
 			path = MazesTests;
+			sourceTree = "<group>";
+		};
+		024D675E247E9B0200D53BD2 /* MazesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				024D675F247E9B0200D53BD2 /* MazesUITests.swift */,
+				024D6761247E9B0200D53BD2 /* Info.plist */,
+			);
+			path = MazesUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,13 +202,31 @@
 			productReference = 022F085F1FA1EEBB0018BB2C /* MazesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		024D675C247E9B0200D53BD2 /* MazesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 024D6764247E9B0200D53BD2 /* Build configuration list for PBXNativeTarget "MazesUITests" */;
+			buildPhases = (
+				024D6759247E9B0200D53BD2 /* Sources */,
+				024D675A247E9B0200D53BD2 /* Frameworks */,
+				024D675B247E9B0200D53BD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				024D6763247E9B0200D53BD2 /* PBXTargetDependency */,
+			);
+			name = MazesUITests;
+			productName = MazesUITests;
+			productReference = 024D675D247E9B0200D53BD2 /* MazesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		022F08431FA1EEBA0018BB2C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Marco Mussini";
 				TargetAttributes = {
@@ -191,6 +238,11 @@
 					022F085E1FA1EEBB0018BB2C = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1110;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 022F084A1FA1EEBA0018BB2C;
+					};
+					024D675C247E9B0200D53BD2 = {
+						CreatedOnToolsVersion = 11.5;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 022F084A1FA1EEBA0018BB2C;
 					};
@@ -211,6 +263,7 @@
 			targets = (
 				022F084A1FA1EEBA0018BB2C /* Mazes */,
 				022F085E1FA1EEBB0018BB2C /* MazesTests */,
+				024D675C247E9B0200D53BD2 /* MazesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,11 +275,17 @@
 			files = (
 				022F08591FA1EEBA0018BB2C /* LaunchScreen.storyboard in Resources */,
 				022F08561FA1EEBA0018BB2C /* Assets.xcassets in Resources */,
-				022F08541FA1EEBA0018BB2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		022F085D1FA1EEBB0018BB2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024D675B247E9B0200D53BD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,6 +322,15 @@
 				020269FE247297D6006FE5E9 /* LinkableTests.swift in Sources */,
 				026CCC8424766C2400CC3634 /* PositionableTests.swift in Sources */,
 				022F087A1FA46FBD0018BB2C /* GridTests.swift in Sources */,
+				024D6782247ED63E00D53BD2 /* ViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		024D6759247E9B0200D53BD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				024D6760247E9B0200D53BD2 /* MazesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,17 +342,14 @@
 			target = 022F084A1FA1EEBA0018BB2C /* Mazes */;
 			targetProxy = 022F08601FA1EEBB0018BB2C /* PBXContainerItemProxy */;
 		};
+		024D6763247E9B0200D53BD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 022F084A1FA1EEBA0018BB2C /* Mazes */;
+			targetProxy = 024D6762247E9B0200D53BD2 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		022F08521FA1EEBA0018BB2C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				022F08531FA1EEBA0018BB2C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		022F08571FA1EEBA0018BB2C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -471,6 +536,43 @@
 			};
 			name = Release;
 		};
+		024D6765247E9B0200D53BD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
+				INFOPLIST_FILE = MazesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marco.MazesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Mazes;
+			};
+			name = Debug;
+		};
+		024D6766247E9B0200D53BD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LYH6S7CN9V;
+				INFOPLIST_FILE = MazesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marco.MazesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Mazes;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -497,6 +599,15 @@
 			buildConfigurations = (
 				022F086C1FA1EEBB0018BB2C /* Debug */,
 				022F086D1FA1EEBB0018BB2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		024D6764247E9B0200D53BD2 /* Build configuration list for PBXNativeTarget "MazesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				024D6765247E9B0200D53BD2 /* Debug */,
+				024D6766247E9B0200D53BD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

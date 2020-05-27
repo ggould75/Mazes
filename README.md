@@ -63,3 +63,6 @@ I'm just having fun with Swift, TDD to generate and solve Mazes.
 +---+---+---+---+---+---+---+---+---+---+
 ```
 
+**A very basic iPhone UI**
+
+<img src="Screenshots/BinaryTree.png" width=400>

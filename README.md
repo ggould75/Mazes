@@ -1,6 +1,6 @@
 # Mazes
 
-I'm just having fun with Swift, TDD to generate and solve Mazes.
+Having fun with Swift, TDD and Maze algorithms generation.
 
 5x5 ASCII maze generated with Binary Tree algorithm
 ```

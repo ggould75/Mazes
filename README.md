@@ -1,6 +1,7 @@
 # Mazes
 
-Mazes are a very intriguing subject to me, and with this project basically I wanted to experiment on they are built and how they can be solved.
+Mazes are a very intriguing subject to me, and with this project I wanted to experiment with building and solving them.
+
 I started by introducing some data structures that can be used as building blocks for building a maze.
 These are intentionally generic in order to allow building (potentially) any kind of maze in the future, for example not only 2D mazes, but also 3D, or circular or other shapes... And why not, something that can be used for rendering a game and navigating into a maze in 3D.
 
